@@ -1,0 +1,121 @@
+main {
+  width: 100%;
+  height: 100%;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+}
+
+.home-welcome {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-welcome h1 {
+  margin: 25px;
+  font-size: 30px;
+  background-color: rgba(229, 229, 255, 0.6666666667);
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+}
+@media only screen and (max-width: 720px) {
+  .home-welcome h1 {
+    font-size: 20px;
+  }
+}
+
+.home-notes-preview {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-notes-preview__container {
+  width: 90%;
+  background-color: black;
+}
+.home-notes-preview__container__title {
+  width: 100%;
+  height: auto;
+  color: white;
+}
+.home-notes-preview__container__title h2 {
+  font-size: 20px;
+  margin: 10px;
+}
+.home-notes-preview__container__content {
+  width: 100%;
+  height: 200px;
+  background-color: blue;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+}
+.home-notes-preview__container__content__note {
+  width: 300px;
+  min-width: 300px;
+  height: 100%;
+  background-color: white;
+}
+.home-notes-preview__container__content__note__id-priority {
+  width: 100%;
+  height: 20%;
+  display: flex;
+}
+.home-notes-preview__container__content__note__id-priority__id {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-notes-preview__container__content__note__id-priority__id p {
+  margin: 0 10px;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #777;
+}
+.home-notes-preview__container__content__note__id-priority__id p span {
+  margin: 0 5px;
+  box-sizing: border-box;
+}
+.home-notes-preview__container__content__note__id-priority__priority {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-notes-preview__container__content__note__id-priority__priority p {
+  margin: 0;
+}
+.home-notes-preview__alert {
+  width: 90%;
+  height: 100px;
+  background-color: red;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.home-notes-preview__alert p {
+  margin: 15px;
+  font-size: 20px;
+}
+@media only screen and (max-width: 720px) {
+  .home-notes-preview__alert p {
+    font-size: 15px;
+  }
+}
+
+/*# sourceMappingURL=Home.css.map */

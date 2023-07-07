@@ -11,9 +11,17 @@ import SpecificNote from "./routes/SpecificNote";
 import { useAppDispatch } from "./hooks/store";
 import { updateLoginInfo } from "./store/userInfo";
 
+interface resultInfo {
+  ok: boolean;
+  userInfo: {
+    username: string;
+    email: string;
+  };
+}
+
 export default function App() {
   const dispatch = useAppDispatch();
-  const authData = useAuth();
+  const authData: resultInfo = useAuth();
 
   useEffect(() => {
     dispatch(updateLoginInfo(authData));

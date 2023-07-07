@@ -1,7 +1,13 @@
 import { FormEvent } from "react";
 import { host } from "../components/host";
+import { useAuth } from "../hooks/useAuth";
+import { useAppDispatch } from "../hooks/store";
+import { updateLoginInfo } from "../store/userInfo";
 
 export default function Register() {
+  const dispatch = useAppDispatch();
+  const authData = useAuth();
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
@@ -36,6 +42,7 @@ export default function Register() {
 
         if (res.ok) {
           window.localStorage.setItem("SESSION_ID", JSON.stringify(result));
+          dispatch(updateLoginInfo(authData));
           window.open(`http://${host}:5173/`, "_self");
         } else {
           console.error(result.error);

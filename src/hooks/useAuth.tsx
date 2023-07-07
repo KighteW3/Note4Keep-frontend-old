@@ -19,7 +19,7 @@ const useAuth = () => {
   });
 
   useEffect(() => {
-    const tokenString = window.localStorage.getItem("SESSION_ID") || null;
+    const tokenString = window.localStorage.getItem("SESSION_ID");
 
     if (tokenString) {
       const token = JSON.parse(tokenString);
@@ -37,19 +37,25 @@ const useAuth = () => {
 
         const data = await result.json();
 
-        const dataToReturn = {
-          ok: result.ok ? true : false,
-          userInfo: {
-            username:
-              result.ok && data.result.username
-                ? data.result.username
-                : "No logged",
-            email:
-              result.ok && data.result.email ? data.result.email : "No email",
-          },
-        };
-
-        setAuthData(dataToReturn);
+        if (result.ok) {
+          const dataToReturn = {
+            ok: true,
+            userInfo: {
+              username: data.result.username,
+              email: data.result.email,
+            },
+          };
+          setAuthData(dataToReturn);
+        } else {
+          const dataToReturn = {
+            ok: false,
+            userInfo: {
+              username: "No logged",
+              email: "No email",
+            },
+          };
+          setAuthData(dataToReturn);
+        }
       })();
     } else {
       const dataToReturn = {

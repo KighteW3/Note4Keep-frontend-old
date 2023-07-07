@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import "../styles/NavBar.css";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../hooks/store";
 import { host } from "./host";
+import { useAuth } from "../hooks/useAuth";
 
 export default function NavBar() {
-  const logged = useAppSelector((state) => state.userInfo);
   const [userMenuDesktop, setUserMenuDesktop] = useState(<></>);
   const [userMenuMobile, setUserMenuMobile] = useState(<></>);
+  const authData = useAuth();
 
   const handleClick = () => {
     window.localStorage.removeItem("SESSION_ID");
-    window.open(`http://${host}:5173`, "_self");
+    window.open(`http://${host}:5173/`, "_self");
   };
 
   useEffect(() => {
-    if (logged.ok) {
+    if (authData.ok) {
       setUserMenuDesktop(
         <>
           <button onClick={handleClick}>Log out</button>
@@ -47,10 +47,10 @@ export default function NavBar() {
       setUserMenuDesktop(
         <>
           <div>
-            <Link to="/users/login" >Login</Link>
+            <Link to="/users/login">Login</Link>
           </div>
           <div>
-            <Link to="/users/register" >Register</Link>
+            <Link to="/users/register">Register</Link>
           </div>
         </>
       );
@@ -95,7 +95,7 @@ export default function NavBar() {
         </>
       );
     }
-  }, [logged]);
+  }, [authData]);
 
   return (
     <>

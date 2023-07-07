@@ -2,6 +2,7 @@ import "../styles/Home.css";
 import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { useEffect, useState } from "react";
 import { host } from "../components/host";
+import { useLocation, useNavigation } from "react-router-dom";
 
 interface resultInfo {
   ok: boolean;
@@ -18,18 +19,28 @@ interface notes {
   text: string;
 }
 
+const defaultNote = {
+  note_id: "id-example",
+  title: "title-example",
+  priority: 5,
+  text: "text-example"
+}
+
 export default function Home() {
   const logged: resultInfo = useAppSelector((state) => state.userInfo);
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
-  const [notesList, setNotesList] = useState<notes[] | null>(null);
+  const [notesList, setNotesList] = useState<notes[] | null>([defaultNote]);
+
+  const location = useLocation();
+  const render = location.state?.shouldRender;
 
   useEffect(() => {
-    if (logged.ok) {
-      const token = window.localStorage.getItem("SESSION_ID");
+    const token = window.localStorage.getItem("SESSION_ID");
 
-      if (token) {
-        const tokenDecoded = JSON.parse(token);
+    if (token) {
+      (async () => {
+        const tokenDecoded = await JSON.parse(token);
         const URL = `http://${host}:5722/api/notes`;
 
         const data = {
@@ -40,35 +51,32 @@ export default function Home() {
           },
         };
 
-        (async () => {
-          try {
-            const response = await fetch(URL, data);
-            const res = await response.json();
+        try {
+          const response = await fetch(URL, data);
+          const res = await response.json();
 
-            if (response.ok) {
-              setNotesList(res.result);
-              /* dispatch(refreshCount(refresh + 1));
-              dispatch(refreshLog("Automatic refresh")); */
-              console.log("ok");
-            } else {
-              setNotesList([]);
-            }
-          } catch (e) {
-            console.error(e);
+          if (response.ok) {
+            setNotesList(res.result);
+          } else {
+            setNotesList([defaultNote]);
           }
-        })();
-      } else {
-        setNotesList(null);
-      }
+        } catch (e) {
+          console.error(e);
+        }
+      })();
     } else {
       setNotesList(null);
     }
-  }, [refresh, logged, dispatch]);
+  }, [refresh, logged, dispatch, render]);
 
   return (
     <div className="home">
       <div className="home-welcome">
-        {logged.ok ? <h1>Welcome {logged.userInfo.username} !</h1> : <h1>Welcome anonymous !</h1>}
+        {logged.ok ? (
+          <h1>Welcome {logged.userInfo.username} !</h1>
+        ) : (
+          <h1>Welcome anonymous !</h1>
+        )}
       </div>
       <div className="home-notes-preview">
         {notesList !== null ? (
@@ -96,7 +104,7 @@ export default function Home() {
                     <div className="home-notes-preview__container__content__note__title">
                       <h3>{result.title}</h3>
                     </div>
-                    <div className="home-notes-preview__container__content__note__id-priority__text">
+                    <div className="home-notes-preview__container__content__note__text">
                       <p>{result.text}</p>
                     </div>
                   </div>
@@ -106,7 +114,10 @@ export default function Home() {
           </div>
         ) : (
           <div className="home-notes-preview__alert">
-            <p>No user provided, so no online notes stored. Try making an account or login into one and create some notes.</p>
+            <p>
+              No user provided, so no online notes stored. Try making an account
+              or login into one and create some notes.
+            </p>
           </div>
         )}
       </div>

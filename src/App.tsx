@@ -10,6 +10,7 @@ import Notes from "./routes/Notes";
 import SpecificNote from "./routes/SpecificNote";
 import { useAppDispatch } from "./hooks/store";
 import { updateLoginInfo } from "./store/userInfo";
+import SearchNotes from "./routes/SearchNotes";
 
 interface resultInfo {
   ok: boolean;
@@ -32,8 +33,11 @@ export default function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="notes" element={<Notes />} />
-        <Route path="notes/:noteId" element={<SpecificNote />} />
+        <Route path="notes" element={<Notes />}>
+          <Route path="search/:searchQuery" element={<SearchNotes />} />
+          <Route path="search/:numPage/:searchQuery" element={<SearchNotes />} />
+        </Route>
+        <Route path="notes/id/:noteId" element={<SpecificNote />} />
         <Route path="users/login" element={<Login />} />
         <Route path="users/register" element={<Register />} />
         <Route path="*" element={<>Not found</>} />

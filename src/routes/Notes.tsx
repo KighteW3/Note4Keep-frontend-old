@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { refreshCount, refreshLog } from "../store/refreshNotes";
 import { host } from "../components/host";
 import "../styles/Notes.css";
+import { Outlet } from "react-router-dom";
 
 interface Note {
   note_id: string;
@@ -15,7 +16,7 @@ interface Note {
 export default function Notes() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
-  const [notesList, setNotesList] = useState<JSX.Element | null>(null);
+  const [notesList, setNotesList] = useState<React.JSX.Element | null>(null);
 
   useEffect(() => {
     const URL = `http://${host}:5722/api/notes`;
@@ -199,6 +200,7 @@ export default function Notes() {
             </div>
           </div>
         </nav>
+        <Outlet />
       </div>
     </>
   );

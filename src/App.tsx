@@ -35,8 +35,12 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="notes" element={<Notes />}>
           <Route path="search/:searchQuery" element={<SearchNotes />} />
-          <Route path="search/:numPage/:searchQuery" element={<SearchNotes />} />
+          <Route
+            path="search/:numPage/:searchQuery"
+            element={<SearchNotes />}
+          />
         </Route>
+        <Route path="notes/:numPage" element={<Notes />} />
         <Route path="notes/id/:noteId" element={<SpecificNote />} />
         <Route path="users/login" element={<Login />} />
         <Route path="users/register" element={<Register />} />

@@ -3,6 +3,7 @@ import { host } from "../components/host";
 import "../styles/Notes.css";
 import { Outlet, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
+import NotePreview from "../components/NotePreview";
 
 interface Note {
   note_id: string;
@@ -133,15 +134,18 @@ export default function Notes() {
         <NotesNavBar />
         <Outlet />
         {isRoot && notePageOrd[numPageToUse] ? (
-          <>
+          <div className="notes-main__notes-container">
             {notePageOrd[numPageToUse].map((result) => {
               return (
-                <div key={result.note_id}>
-                  <p>Title: {result.title}</p>
-                </div>
+                <NotePreview
+                  note_id={result.note_id}
+                  title={result.title}
+                  priority={result.priority}
+                  text={result.text}
+                />
               );
             })}
-          </>
+          </div>
         ) : (
           <></>
         )}

@@ -1,3 +1,5 @@
+import "../styles/NotesNavBar.css";
+
 export default function NotesNavBar() {
   return (
     <nav className="notes-nav">

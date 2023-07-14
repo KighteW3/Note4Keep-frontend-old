@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { useEffect, useState } from "react";
 import { host } from "../components/host";
 import { useLocation, useNavigation } from "react-router-dom";
+import NotePreview from "../components/NotePreview";
 
 interface resultInfo {
   ok: boolean;
@@ -23,8 +24,8 @@ const defaultNote = {
   note_id: "id-example",
   title: "title-example",
   priority: 5,
-  text: "text-example"
-}
+  text: "text-example",
+};
 
 export default function Home() {
   const logged: resultInfo = useAppSelector((state) => state.userInfo);
@@ -87,27 +88,12 @@ export default function Home() {
             <div className="home-notes-preview__container__content">
               {notesList.map((result) => {
                 return (
-                  <div
-                    className="home-notes-preview__container__content__note"
-                    key={result.note_id}
-                  >
-                    <div className="home-notes-preview__container__content__note__id-priority">
-                      <div className="home-notes-preview__container__content__note__id-priority__id">
-                        <p>
-                          ID: <span>{result.note_id}</span>
-                        </p>
-                      </div>
-                      <div className="home-notes-preview__container__content__note__id-priority__priority">
-                        <p>{result.priority}</p>
-                      </div>
-                    </div>
-                    <div className="home-notes-preview__container__content__note__title">
-                      <h3>{result.title}</h3>
-                    </div>
-                    <div className="home-notes-preview__container__content__note__text">
-                      <p>{result.text}</p>
-                    </div>
-                  </div>
+                  <NotePreview
+                    note_id={result.note_id}
+                    title={result.title}
+                    priority={result.priority}
+                    text={result.text}
+                  />
                 );
               })}
             </div>

@@ -12,25 +12,16 @@ interface Note {
   text: string;
 }
 
+const noteExample = {
+  note_id: "id example",
+  title: "title example",
+  priority: 0,
+  text: "text example",
+};
+
 export default function Notes() {
-  const [notesList, setNotesList] = useState<Note[]>([
-    {
-      note_id: "id example",
-      title: "title example",
-      priority: 0,
-      text: "text example",
-    },
-  ]);
-  const [notePageOrd, setNotePageOrd] = useState<Note[][]>([
-    [
-      {
-        note_id: "id example",
-        title: "title example",
-        priority: 0,
-        text: "text example",
-      },
-    ],
-  ]);
+  const [notesList, setNotesList] = useState<Note[]>([noteExample]);
+  const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [isRoot, setIsRoot] = useState<boolean>(true);
   const { numPage } = useParams();
   const [numPageToUse, setNumPageToUse] = useState<number>(0);

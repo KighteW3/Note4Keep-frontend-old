@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { host } from "../components/host";
 import "../styles/Notes.css";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
 import NotePreview from "../components/NotePreview";
+import NotePageNav from "../components/NotePageNav";
 
-interface Note {
+export interface Note {
   note_id: string;
   title: string;
   priority: number;
@@ -23,8 +24,9 @@ export default function Notes() {
   const [notesList, setNotesList] = useState<Note[]>([noteExample]);
   const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [isRoot, setIsRoot] = useState<boolean>(true);
-  const { numPage } = useParams();
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
+  const { numPage } = useParams();
+  const { state } = useLocation();
 
   const URL = `http://${host}:5722/api/notes`;
 
@@ -107,7 +109,7 @@ export default function Notes() {
         ? true
         : false
     );
-  }, [numPage]);
+  }, [numPage, state]);
 
   return (
     <>
@@ -123,7 +125,6 @@ export default function Notes() {
 
       <div className="notes-main">
         <NotesNavBar />
-        <Outlet />
         {isRoot && notePageOrd[numPageToUse] ? (
           <div className="notes-main__notes-container">
             {notePageOrd[numPageToUse].map((result) => {
@@ -136,9 +137,14 @@ export default function Notes() {
                 />
               );
             })}
+            <NotePageNav
+              numPageInt={numPageToUse}
+              notesList={notesList}
+              toUrl={window.location.pathname}
+            />
           </div>
         ) : (
-          <></>
+          <Outlet />
         )}
       </div>
     </>

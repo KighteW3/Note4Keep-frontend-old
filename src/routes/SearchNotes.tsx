@@ -1,36 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { host } from "../components/host";
+import type { Note } from "./Notes";
 
 import "../styles/SearchNotes.css";
 
-interface Note {
-  note_id: string;
-  title: string;
-  priority: number;
-  text: string;
-}
+const noteExample = {
+  note_id: "id example",
+  title: "title example",
+  priority: 0,
+  text: "text example",
+};
 
 export default function SearchNotes() {
   const { searchQuery, numPage } = useParams();
-  const [notesList, setNotesList] = useState<Note[]>([
-    {
-      note_id: "id example",
-      title: "title example",
-      priority: 0,
-      text: "text example",
-    },
-  ]);
-  const [notePageOrd, setNotePageOrd] = useState<Note[][]>([
-    [
-      {
-        note_id: "id example",
-        title: "title example",
-        priority: 0,
-        text: "text example",
-      },
-    ],
-  ]);
+  const [notesList, setNotesList] = useState<Note[]>([noteExample]);
+  const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
 
   const URL = `http://${host}:5722/api/notes/some-note`;

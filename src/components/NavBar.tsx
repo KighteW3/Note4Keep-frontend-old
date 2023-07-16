@@ -105,7 +105,9 @@ export default function NavBar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/notes">Notes</Link>
+            <Link to="/notes" state={{ refreshNow: true }}>
+              Notes
+            </Link>
           </li>
           <li>{userMenuDesktop}</li>
         </ul>

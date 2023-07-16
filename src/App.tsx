@@ -46,6 +46,7 @@ export default function App() {
         <Route path="users/register" element={<Register />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
+      <div style={{height: "300px"}} ></div>
     </main>
   );
 }

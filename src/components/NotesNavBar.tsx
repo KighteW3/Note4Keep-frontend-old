@@ -1,14 +1,31 @@
+import React from "react";
 import "../styles/NotesNavBar.css";
+import { useNavigate } from "react-router-dom";
+
+interface FormStructure extends HTMLFormElement {
+  search: { value: string };
+}
 
 export default function NotesNavBar() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent<FormStructure>) => {
+    e.preventDefault();
+
+    const searchQuery = e.currentTarget.search.value;
+
+    navigate(`../notes/search/${searchQuery}`, { replace: true });
+  };
+
   return (
     <nav className="notes-nav">
       <div className="notes-nav__bar">
-        <form className="notes-nav__bar__form">
+        <form className="notes-nav__bar__form" onSubmit={handleSubmit}>
           <input
             id="notes-nav__bar__form__search"
             type="search"
             placeholder="awdadsawdad"
+            name="search"
           />
           <button>
             <svg

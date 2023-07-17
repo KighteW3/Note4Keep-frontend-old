@@ -9,7 +9,7 @@ interface Note {
 
 export default function NotePreview(props: Note) {
   return (
-    <div className="note-preview" key={props.note_id}>
+    <div className="note-preview" key={props.note_id || 0}>
       <div className="note-preview__id-priority">
         <div className="note-preview__id-priority__id">
           <p>

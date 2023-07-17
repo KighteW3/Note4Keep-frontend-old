@@ -27,6 +27,7 @@ export default function Notes() {
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
   const { numPage } = useParams();
   const { state } = useLocation();
+  const [returnNotes, setReturnNotes] = useState(<></>);
 
   const URL = `http://${host}:5722/api/notes`;
 
@@ -111,6 +112,34 @@ export default function Notes() {
     );
   }, [numPage, state]);
 
+  useEffect(() => {
+    if (isRoot) {
+      if (notePageOrd[numPageToUse]) {
+        setReturnNotes(
+          <div className="notes-main__notes-container">
+            {notePageOrd[numPageToUse].map((result) => {
+              return (
+                <NotePreview
+                  note_id={result.note_id}
+                  title={result.title}
+                  priority={result.priority}
+                  text={result.text}
+                />
+              );
+            })}
+            <NotePageNav
+              numPageInt={numPageToUse}
+              notesList={notesList || []}
+              toUrl={["general", window.location.pathname.toString()]}
+            />
+          </div>
+        );
+      }
+    } else {
+      setReturnNotes(<Outlet />)
+    }
+  }, [isRoot, notePageOrd, notesList, numPageToUse]);
+
   return (
     <>
       {/* <CreateNote />
@@ -125,27 +154,7 @@ export default function Notes() {
 
       <div className="notes-main">
         <NotesNavBar />
-        {isRoot && notePageOrd[numPageToUse] ? (
-          <div className="notes-main__notes-container">
-            {notePageOrd[numPageToUse].map((result) => {
-              return (
-                <NotePreview
-                  note_id={result.note_id}
-                  title={result.title}
-                  priority={result.priority}
-                  text={result.text}
-                />
-              );
-            })}
-            <NotePageNav
-              numPageInt={numPageToUse}
-              notesList={notesList}
-              toUrl={window.location.pathname}
-            />
-          </div>
-        ) : (
-          <Outlet />
-        )}
+        {returnNotes}
       </div>
     </>
   );

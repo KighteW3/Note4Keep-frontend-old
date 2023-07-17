@@ -4,6 +4,7 @@ import { host } from "../components/host";
 import type { Note } from "./Notes";
 
 import "../styles/SearchNotes.css";
+import NotePageNav from "../components/NotePageNav";
 
 const noteExample = {
   note_id: "id example",
@@ -99,10 +100,10 @@ export default function SearchNotes() {
   return (
     <div className="search-notes">
       <div className="search-notes__content">
-        {notePageOrd[numPageToUse] ? (
+        {notesList && notePageOrd[numPageToUse] ? (
           notePageOrd[numPageToUse].map((result) => {
             return (
-              <div key={result.note_id}>
+              <div key={result.note_id || 0}>
                 <p>Title: {result.title}</p>
               </div>
             );
@@ -110,8 +111,16 @@ export default function SearchNotes() {
         ) : (
           <></>
         )}
+        <NotePageNav
+          numPageInt={numPageToUse}
+          notesList={notesList || [noteExample]}
+          toUrl={[
+            "search",
+            window.location.pathname.toString(),
+            searchQuery || "",
+          ]}
+        />
       </div>
-      <div className="search-notes__pages-count"></div>
     </div>
   );
 }

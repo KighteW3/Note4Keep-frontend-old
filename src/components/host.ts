@@ -1,2 +1,4 @@
-export const host = '192.168.1.192';
-export const port = '5722';
+export const hostB = 'localhost';
+export const hostF = 'localhost';
+export const portB = '5722';
+export const portF = '5173'

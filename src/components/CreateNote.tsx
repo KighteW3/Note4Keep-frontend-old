@@ -1,7 +1,8 @@
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { refreshCount, refreshLog } from "../store/refreshNotes";
-import { host, port } from "./host";
+import { hostB, hostF, portB, portF } from "./host";
+import "../styles/CreateNote.css";
 
 interface Form {
   title: { value: string };
@@ -12,6 +13,18 @@ interface Form {
 export default function CreateNote() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
+  const [optionsList, setOptionsList] = useState([<></>]);
+
+  useEffect(() => {
+    const x = [];
+
+    for (let i = 0; i < 5; i++) {
+      const a = i + 1;
+      x.push(<option value={a}>{a}</option>);
+    }
+
+    setOptionsList(x);
+  }, []);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -42,7 +55,7 @@ export default function CreateNote() {
         }),
       };
 
-      const URL = `http://${host}:${port}/api/notes/create-note`;
+      const URL = `http://${hostB}:${portB}/api/notes/create-note`;
 
       (async () => {
         const response = await fetch(URL, data);
@@ -57,12 +70,12 @@ export default function CreateNote() {
         }
       })();
     } else {
-      window.open(`http://${host}:${port}/`);
+      window.open(`http://${hostF}:${portF}/`);
     }
   };
 
   return (
-    <>
+    /* <>
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" placeholder="title" />
         <select placeholder="5" name="priority">
@@ -83,6 +96,53 @@ export default function CreateNote() {
         <input type="text" name="text" placeholder="Text" />
         <input type="submit" value="Enviar" />
       </form>
-    </>
+    </> */
+
+    <div className="create-note-container">
+      <div className="create-note">
+        <div className="create-note__note-bar">
+          <h2 className="create-note__note-bar__title">Crear nota</h2>
+          <div className="create-note__note-bar__exit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+        </div>
+        <form className="create-note__note-content">
+          <div className="create-note__note-content__structure">
+            <div className="create-note__note-content__structure__headers">
+              <input
+                type="text"
+                placeholder="Insert here the title of the note"
+                name="title"
+              />
+              <select placeholder="5" name="priority">
+                <option hidden value={2}>
+                  Priority (default: 5)
+                </option>
+                {optionsList.map((result) => {
+                  return <>{result}</>;
+                })}
+              </select>
+            </div>
+            <div className="create-note__note-content__structure__body">
+              <textarea></textarea>
+            </div>
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

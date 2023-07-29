@@ -1,9 +1,9 @@
 import "../styles/Home.css";
 import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { useEffect, useState } from "react";
-import { host } from "../components/host";
 import { useLocation, useNavigation } from "react-router-dom";
 import NotePreview from "../components/NotePreview";
+import { hostB } from "../components/host";
 
 interface resultInfo {
   ok: boolean;
@@ -42,7 +42,7 @@ export default function Home() {
     if (token) {
       (async () => {
         const tokenDecoded = await JSON.parse(token);
-        const URL = `http://${host}:5722/api/notes`;
+        const URL = `http://${hostB}:5722/api/notes`;
 
         const data = {
           method: "GET",

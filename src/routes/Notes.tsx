@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { host } from "../components/host";
 import "../styles/Notes.css";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
 import NotePreview from "../components/NotePreview";
 import NotePageNav from "../components/NotePageNav";
+import { hostB } from "../components/host";
+import CreateNote from "../components/CreateNote";
 
 export interface Note {
   note_id: string;
@@ -29,7 +30,7 @@ export default function Notes() {
   const { state } = useLocation();
   const [returnNotes, setReturnNotes] = useState(<></>);
 
-  const URL = `http://${host}:5722/api/notes`;
+  const URL = `http://${hostB}:5722/api/notes`;
 
   // useEffect para el funcionamiento del componente
   useEffect(() => {
@@ -136,7 +137,7 @@ export default function Notes() {
         );
       }
     } else {
-      setReturnNotes(<Outlet />)
+      setReturnNotes(<Outlet />);
     }
   }, [isRoot, notePageOrd, notesList, numPageToUse]);
 
@@ -156,6 +157,7 @@ export default function Notes() {
         <NotesNavBar />
         {returnNotes}
       </div>
+      <CreateNote />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import "../styles/NotePreview.css";
+import createRandomString from "./createRandomString";
 
 interface Note {
   note_id: string;
@@ -9,7 +10,10 @@ interface Note {
 
 export default function NotePreview(props: Note) {
   return (
-    <div className="note-preview" key={props.note_id || 0}>
+    <div
+      className="note-preview"
+      key={props.note_id || createRandomString(20, false)}
+    >
       <div className="note-preview__id-priority">
         <div className="note-preview__id-priority__id">
           <p>

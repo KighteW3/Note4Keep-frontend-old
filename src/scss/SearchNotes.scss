@@ -1,5 +1,14 @@
 .search-notes {
   width: 100%;
-  height: 400px;
-  background-color: #a0b;
+}
+
+.search-notes__content {
+  width: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }

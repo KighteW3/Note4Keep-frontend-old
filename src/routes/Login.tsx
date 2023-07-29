@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
-import { host } from "../components/host";
 import { useNavigate } from "react-router-dom";
+import { hostB, hostF } from "../components/host";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -30,14 +30,14 @@ export default function Register() {
 
     (async () => {
       try {
-        const url = `http://${host}:5722/api/users/login`;
+        const url = `http://${hostB}:5722/api/users/login`;
         const res = await fetch(url, data);
         const result = await res.json();
 
         if (res.ok) {
           window.localStorage.setItem(`SESSION_ID`, JSON.stringify(result));
           navigate("/", { state: { shouldRender: true } });
-          window.open(`http://${host}:5173/`, "_self");
+          window.open(`http://${hostF}:5173/`, "_self");
         } else {
           console.error(result.error);
         }

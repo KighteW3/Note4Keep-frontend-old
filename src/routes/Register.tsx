@@ -1,8 +1,8 @@
 import { FormEvent } from "react";
-import { host } from "../components/host";
 import { useAuth } from "../hooks/useAuth";
 import { useAppDispatch } from "../hooks/store";
 import { updateLoginInfo } from "../store/userInfo";
+import { hostB, hostF } from "../components/host";
 
 export default function Register() {
   const dispatch = useAppDispatch();
@@ -36,14 +36,14 @@ export default function Register() {
 
     (async () => {
       try {
-        const url = `http://${host}:5722/api/users/create-user`;
+        const url = `http://${hostB}:5722/api/users/create-user`;
         const res = await fetch(url, data);
         const result = await res.json();
 
         if (res.ok) {
           window.localStorage.setItem("SESSION_ID", JSON.stringify(result));
           dispatch(updateLoginInfo(authData));
-          window.open(`http://${host}:5173/`, "_self");
+          window.open(`http://${hostF}:5173/`, "_self");
         } else {
           console.error(result.error);
         }

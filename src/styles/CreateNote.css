@@ -1,0 +1,83 @@
+main {
+  width: 100%;
+  height: 100%;
+}
+
+.create-note-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.create-note {
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+  padding: 0 20px;
+  border-radius: 15px;
+}
+.create-note__note-bar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.create-note__note-bar__title {
+  font-size: 20px;
+}
+.create-note__note-bar__exit {
+  position: absolute;
+  width: 37px;
+  height: 37px;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: beige;
+}
+.create-note__note-bar__exit svg {
+  height: 80%;
+  width: 80%;
+}
+.create-note__note-content {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 15px;
+  border: 2px solid #555;
+  margin: 25px 0;
+  box-sizing: border-box;
+}
+.create-note__note-content__structure {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.create-note__note-content__structure__headers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.create-note__note-content__structure__body {
+  width: 100%;
+}
+.create-note__note-content__structure__body textarea {
+  box-sizing: border-box;
+  width: inherit;
+}
+
+/*# sourceMappingURL=CreateNote.css.map */

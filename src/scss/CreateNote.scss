@@ -1,0 +1,88 @@
+@import "./App.scss";
+
+.create-note-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.create-note {
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+  padding: 0 20px;
+  border-radius: $border-radius;
+
+
+  &__note-bar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__exit {
+      position: absolute;
+      width: 37px;
+      height: 37px;
+      right: 0;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $border-radius;
+      background-color: beige;
+
+      svg {
+        height: 80%;
+        width: 80%;
+      }
+    }
+  }
+
+  &__note-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+    padding: 15px;
+    border: 2px solid #555;
+    margin: 25px 0;
+    box-sizing: border-box;
+    
+    &__structure {
+      width: auto;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      &__headers {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      &__body {
+        width: 100%;
+
+        textarea {
+          box-sizing: border-box;
+          width: inherit;
+        }
+      }
+    }
+  }
+}

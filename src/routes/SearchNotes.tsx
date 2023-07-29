@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { host } from "../components/host";
+import { useNavigate, useParams } from "react-router-dom";
+import NotePreview from "../components/NotePreview";
 import type { Note } from "./Notes";
 
 import "../styles/SearchNotes.css";
 import NotePageNav from "../components/NotePageNav";
+import { hostB } from "../components/host";
 
 const noteExample = {
   note_id: "id example",
@@ -18,10 +19,15 @@ export default function SearchNotes() {
   const [notesList, setNotesList] = useState<Note[]>([noteExample]);
   const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
+  const navigate = useNavigate();
 
-  const URL = `http://${host}:5722/api/notes/some-note`;
+  const URL = `http://${hostB}:5722/api/notes/some-note`;
 
   useEffect(() => {
+    if (searchQuery === "" || window.location.pathname === "/notes/search/") {
+      navigate(`../notes/`, { replace: true });
+    }
+
     const token = window.localStorage.getItem("SESSION_ID");
 
     (async () => {
@@ -48,7 +54,7 @@ export default function SearchNotes() {
         }
       }
     })();
-  }, [URL, searchQuery]);
+  }, [URL, searchQuery, navigate]);
 
   useEffect(() => {
     const numOfPages =
@@ -103,9 +109,12 @@ export default function SearchNotes() {
         {notesList && notePageOrd[numPageToUse] ? (
           notePageOrd[numPageToUse].map((result) => {
             return (
-              <div key={result.note_id || 0}>
-                <p>Title: {result.title}</p>
-              </div>
+              <NotePreview
+                note_id={result.note_id}
+                title={result.title}
+                priority={result.priority}
+                text={result.text}
+              />
             );
           })
         ) : (

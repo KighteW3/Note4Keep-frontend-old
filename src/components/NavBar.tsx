@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/NavBar.css";
 import { Link } from "react-router-dom";
-import { host } from "./host";
 import { useAuth } from "../hooks/useAuth";
+import { hostF } from "./host";
 
 export default function NavBar() {
   const [userMenuDesktop, setUserMenuDesktop] = useState(<></>);
@@ -11,7 +11,7 @@ export default function NavBar() {
 
   const handleClick = () => {
     window.localStorage.removeItem("SESSION_ID");
-    window.open(`http://${host}:5173/`, "_self");
+    window.open(`http://${hostF}:5173/`, "_self");
   };
 
   useEffect(() => {

@@ -1,14 +1,9 @@
+@import "./Notes.scss";
+
 .search-notes {
   width: 100%;
 }
 
 .search-notes__content {
-  width: 100%;
-  padding: 40px;
-  box-sizing: border-box;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  @extend .notes-main__notes-container;
 }

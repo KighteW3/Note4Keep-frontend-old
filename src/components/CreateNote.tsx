@@ -65,9 +65,8 @@ export default function CreateNote() {
 
         if (response.ok) {
           console.log(resParsed.response);
-          dispatch(refreshCount(refresh + 1));
           dispatch(refreshLog("Note created"));
-          navigate("../notes", { replace: true });
+          dispatch(refreshCount(refresh + 1));
           window.scrollTo(0, 0);
         } else {
           console.error(resParsed.error);
@@ -79,29 +78,6 @@ export default function CreateNote() {
   };
 
   return (
-    /* <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="title" />
-        <select placeholder="5" name="priority">
-          <option hidden value={5}>
-            Select an option
-          </option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-          <option value={6}>6</option>
-          <option value={7}>7</option>
-          <option value={8}>8</option>
-          <option value={9}>9</option>
-          <option value={10}>10</option>
-        </select>
-        <input type="text" name="text" placeholder="Text" />
-        <input type="submit" value="Enviar" />
-      </form>
-    </> */
-
     <div className="create-note-container">
       <div className="create-note">
         <div className="create-note__note-bar">

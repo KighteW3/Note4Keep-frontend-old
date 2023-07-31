@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import "../styles/Notes.css";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
 import NotePreview from "../components/NotePreview";
 import NotePageNav from "../components/NotePageNav";
 import { hostB } from "../components/host";
-import CreateNote from "../components/CreateNote";
 import { useAppSelector } from "../hooks/store";
 
 export interface Note {
@@ -103,7 +102,7 @@ export default function Notes() {
     }
 
     setNotePageOrd(notesPages);
-  }, [notesList]);
+  }, [notesList, refresh]);
 
   useEffect(() => {
     const a = numPage ? parseInt(numPage) - 1 : 0;
@@ -143,25 +142,14 @@ export default function Notes() {
     } else {
       setReturnNotes(<Outlet />);
     }
-  }, [isRoot, notePageOrd, notesList, numPageToUse]);
+  }, [isRoot, notePageOrd, notesList, numPageToUse, refresh]);
 
   return (
     <>
-      {/* <CreateNote />
-      <button
-        onClick={() => {
-          dispatch(refreshCount(refresh + 1));
-        }}
-      >
-        Actualizar
-      </button>
-      {notesList} */}
-
       <div className="notes-main">
         <NotesNavBar />
         {returnNotes}
       </div>
-      <CreateNote />
     </>
   );
 }

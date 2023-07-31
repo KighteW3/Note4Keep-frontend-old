@@ -8,14 +8,13 @@
 }
 
 .create-note {
-  width: max-content;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   background-color: brown;
   padding: 0 20px;
   border-radius: $border-radius;
-
 
   &__note-bar {
     width: 100%;
@@ -59,7 +58,7 @@
     border: 2px solid #555;
     margin: 25px 0;
     box-sizing: border-box;
-    
+
     &__structure {
       width: auto;
       height: auto;

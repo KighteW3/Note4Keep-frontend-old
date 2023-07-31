@@ -11,6 +11,7 @@ import SpecificNote from "./routes/SpecificNote";
 import { useAppDispatch, useAppSelector } from "./hooks/store";
 import { updateLoginInfo } from "./store/userInfo";
 import SearchNotes from "./routes/SearchNotes";
+import { dialogToShow, turnDialog } from "./store/dialogDisplay";
 
 interface resultInfo {
   ok: boolean;
@@ -21,7 +22,8 @@ interface resultInfo {
 }
 
 export default function App() {
-  const turnDialog = useAppSelector((state) => state.dialogDisplay.turn);
+  const refresh = useAppSelector((state) => state.refreshNotes.refresh);
+  const dialogTurn = useAppSelector((state) => state.dialogDisplay.turn);
   const dialogContent = useAppSelector((state) => state.dialogDisplay.content);
   const dispatch = useAppDispatch();
   const authData: resultInfo = useAuth();
@@ -30,11 +32,16 @@ export default function App() {
     dispatch(updateLoginInfo(authData));
   }, [dispatch, authData]);
 
+  useEffect(() => {
+    dispatch(turnDialog(false));
+    dispatch(dialogToShow(<></>));
+  }, [refresh, dispatch]);
+
   return (
     <main>
       <div
         className="modal-display"
-        style={{ display: turnDialog ? "flex" : "none" }}
+        style={{ display: dialogTurn ? "flex" : "none" }}
       >
         <div className="modal-display__box">{dialogContent || <></>}</div>
       </div>

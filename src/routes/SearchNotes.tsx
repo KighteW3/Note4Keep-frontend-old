@@ -6,6 +6,7 @@ import type { Note } from "./Notes";
 import "../styles/SearchNotes.css";
 import NotePageNav from "../components/NotePageNav";
 import { hostB } from "../components/host";
+import { useAppSelector } from "../hooks/store";
 
 const noteExample = {
   note_id: "id example",
@@ -20,6 +21,7 @@ export default function SearchNotes() {
   const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
   const navigate = useNavigate();
+  const refresh = useAppSelector((state) => state.refreshNotes.refresh);
 
   const URL = `http://${hostB}:5722/api/notes/some-note`;
 
@@ -54,7 +56,7 @@ export default function SearchNotes() {
         }
       }
     })();
-  }, [URL, searchQuery, navigate]);
+  }, [URL, searchQuery, navigate, refresh]);
 
   useEffect(() => {
     const numOfPages =
@@ -95,13 +97,13 @@ export default function SearchNotes() {
     if (notesList) {
       setNotePageOrd(notesPages);
     }
-  }, [notesList]);
+  }, [notesList, refresh]);
 
   useEffect(() => {
     const a = numPage ? parseInt(numPage) - 1 : 0;
 
     setNumPageToUse(a);
-  }, [numPage, notePageOrd]);
+  }, [numPage, notePageOrd, refresh]);
 
   return (
     <div className="search-notes">

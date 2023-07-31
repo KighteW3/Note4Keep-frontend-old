@@ -1,12 +1,18 @@
 import React from "react";
 import "../styles/NotesNavBar.css";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks/store";
+import { dialogToShow, turnDialog } from "../store/dialogDisplay";
+import CreateNote from "./CreateNote";
 
 interface FormStructure extends HTMLFormElement {
   search: { value: string };
 }
 
 export default function NotesNavBar() {
+  const dispatch = useAppDispatch();
+  const dialogTurn = useAppSelector((state) => state.dialogDisplay.turn);
+  const dialogContent = useAppSelector((state) => state.dialogDisplay.content);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<FormStructure>) => {
@@ -15,6 +21,13 @@ export default function NotesNavBar() {
     const searchQuery = e.currentTarget.search.value;
 
     navigate(`../notes/search/${searchQuery}`, { replace: true });
+  };
+
+  const WriteNote = () => {
+    if (!dialogTurn) {
+      dispatch(turnDialog(true));
+      dispatch(dialogToShow(<CreateNote />));
+    }
   };
 
   return (
@@ -84,7 +97,7 @@ export default function NotesNavBar() {
             </button>
           </div>
           <div className="notes-nav__bar__buttons__button notes-nav__bar__buttons__write">
-            <button>
+            <button onClick={WriteNote}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

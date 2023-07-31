@@ -11,7 +11,7 @@ const initialState: dialogStruct = {
 };
 
 export const dialogDisplaySlice = createSlice({
-  name: "dialogDisplay",
+  name: "dialogDispay",
   initialState,
   reducers: {
     dialogToShow: (state, action: PayloadAction<JSX.Element>) => {

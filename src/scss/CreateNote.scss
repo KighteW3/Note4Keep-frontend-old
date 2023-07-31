@@ -8,7 +8,7 @@
 }
 
 .create-note {
-  width: 70%;
+  width: max-content;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -72,11 +72,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
         gap: 20px;
+        margin: 20px 0;
       }
 
       &__body {
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         textarea {
           box-sizing: border-box;

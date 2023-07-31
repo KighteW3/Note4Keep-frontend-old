@@ -6,6 +6,7 @@ import NotePreview from "../components/NotePreview";
 import NotePageNav from "../components/NotePageNav";
 import { hostB } from "../components/host";
 import CreateNote from "../components/CreateNote";
+import { useAppSelector } from "../hooks/store";
 
 export interface Note {
   note_id: string;
@@ -22,6 +23,7 @@ const noteExample = {
 };
 
 export default function Notes() {
+  const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const [notesList, setNotesList] = useState<Note[]>([noteExample]);
   const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [isRoot, setIsRoot] = useState<boolean>(true);
@@ -59,7 +61,9 @@ export default function Notes() {
     } else {
       console.error("No auth provided");
     }
-  }, [URL]);
+
+    window.scrollTo(0, 0);
+  }, [URL, refresh]);
 
   // useEffect para la gestión de las páginas
   useEffect(() => {

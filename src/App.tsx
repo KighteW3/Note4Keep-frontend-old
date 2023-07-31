@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 import Notes from "./routes/Notes";
 import SpecificNote from "./routes/SpecificNote";
-import { useAppDispatch } from "./hooks/store";
+import { useAppDispatch, useAppSelector } from "./hooks/store";
 import { updateLoginInfo } from "./store/userInfo";
 import SearchNotes from "./routes/SearchNotes";
 
@@ -21,6 +21,8 @@ interface resultInfo {
 }
 
 export default function App() {
+  const turnDialog = useAppSelector((state) => state.dialogDisplay.turn);
+  const dialogContent = useAppSelector((state) => state.dialogDisplay.content);
   const dispatch = useAppDispatch();
   const authData: resultInfo = useAuth();
 
@@ -30,6 +32,12 @@ export default function App() {
 
   return (
     <main>
+      <div
+        className="modal-display"
+        style={{ display: turnDialog ? "flex" : "none" }}
+      >
+        <div className="modal-display__box">{dialogContent || <></>}</div>
+      </div>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -46,7 +54,7 @@ export default function App() {
         <Route path="users/register" element={<Register />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
-      <div style={{height: "300px"}} ></div>
+      <div style={{ height: "300px" }}></div>
     </main>
   );
 }

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { refreshCount, refreshLog } from "../store/refreshNotes";
 import { hostB, hostF, portB, portF } from "./host";
 import "../styles/CreateNote.css";
+import { useNavigate } from "react-router-dom";
 
 interface Form {
   title: { value: string };
@@ -14,6 +15,7 @@ export default function CreateNote() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
   const [optionsList, setOptionsList] = useState([<></>]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const x = [];
@@ -65,6 +67,8 @@ export default function CreateNote() {
           console.log(resParsed.response);
           dispatch(refreshCount(refresh + 1));
           dispatch(refreshLog("Note created"));
+          navigate("../notes", { replace: true });
+          window.scrollTo(0, 0);
         } else {
           console.error(resParsed.error);
         }
@@ -119,7 +123,7 @@ export default function CreateNote() {
             </svg>
           </div>
         </div>
-        <form className="create-note__note-content">
+        <form onSubmit={handleSubmit} className="create-note__note-content">
           <div className="create-note__note-content__structure">
             <div className="create-note__note-content__structure__headers">
               <input
@@ -129,15 +133,15 @@ export default function CreateNote() {
               />
               <select placeholder="5" name="priority">
                 <option hidden value={2}>
-                  Priority (default: 5)
+                  Priority (default: 2)
                 </option>
                 {optionsList.map((result) => {
-                  return <>{result}</>;
+                  return result;
                 })}
               </select>
             </div>
             <div className="create-note__note-content__structure__body">
-              <textarea></textarea>
+              <textarea name="text"></textarea>
             </div>
             <input type="submit" value="Submit" />
           </div>

@@ -2,6 +2,8 @@ import "../styles/NotePageNav.css";
 import type { Note } from "../routes/Notes";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks/store";
+import { refreshCount } from "../store/refreshNotes";
 
 interface PageNavProps {
   numPageInt: number;
@@ -14,6 +16,8 @@ export default function NotePageNav({
   notesList,
   toUrl,
 }: PageNavProps) {
+  const refresh = useAppSelector((state) => state.refreshNotes.refresh);
+  const dispatch = useAppDispatch();
   const [numOfPages, setNumOfPages] = useState<number>(0);
   const numPage = numPageInt + 1;
   const notesListLength = notesList.length;
@@ -65,17 +69,21 @@ export default function NotePageNav({
     }
   }, [numOfPages, numPage, numPageInt, toUrl]);
 
+  const handleClick = () => {
+    dispatch(refreshCount(refresh + 1));
+  };
+
   return (
     <>
       <div className="note-page-nav-container">
         <nav className="note-page-nav">
-          <Link className={backStyle} to={backPage}>
+          <Link onClick={handleClick} className={backStyle} to={backPage}>
             Anterior
           </Link>
           <div>
             {numPage} de {numOfPages}
           </div>
-          <Link className={nextStyle} to={nextPage}>
+          <Link onClick={handleClick} className={nextStyle} to={nextPage}>
             Siguiente
           </Link>
         </nav>

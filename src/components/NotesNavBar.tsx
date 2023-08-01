@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { dialogToShow, turnDialog } from "../store/dialogDisplay";
 import CreateNote from "./CreateNote";
+import ConfirmDialog from "./ConfirmDialog";
 
 interface FormStructure extends HTMLFormElement {
   search: { value: string };
@@ -27,6 +28,13 @@ export default function NotesNavBar() {
     if (!dialogTurn) {
       dispatch(turnDialog(true));
       dispatch(dialogToShow(<CreateNote />));
+    }
+  };
+
+  const handleDelete = () => {
+    if (!dialogTurn) {
+      dispatch(turnDialog(true));
+      dispatch(dialogToShow(<ConfirmDialog />));
     }
   };
 
@@ -61,7 +69,7 @@ export default function NotesNavBar() {
         </form>
         <div className="notes-nav__bar__buttons">
           <div className="notes-nav__bar__buttons__button notes-nav__bar__buttons__delete">
-            <button>
+            <button onClick={handleDelete}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

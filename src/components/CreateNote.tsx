@@ -4,6 +4,7 @@ import { refreshCount, refreshLog } from "../store/refreshNotes";
 import { hostB, hostF, portB, portF } from "./host";
 import "../styles/CreateNote.css";
 import { useNavigate } from "react-router-dom";
+import { turnDialog, dialogToShow } from "../store/dialogDisplay";
 
 interface Form {
   title: { value: string };
@@ -77,12 +78,18 @@ export default function CreateNote() {
     }
   };
 
+  const handleExit = () => {
+    dispatch(turnDialog(false));
+    dispatch(dialogToShow(<></>));
+    dispatch(refreshCount(refresh + 1));
+  };
+
   return (
     <div className="create-note-container">
       <div className="create-note">
         <div className="create-note__note-bar">
           <h2 className="create-note__note-bar__title">Crear nota</h2>
-          <div className="create-note__note-bar__exit">
+          <button className="create-note__note-bar__exit" onClick={handleExit}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -97,17 +104,22 @@ export default function CreateNote() {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </div>
+          </button>
         </div>
         <form onSubmit={handleSubmit} className="create-note__note-content">
           <div className="create-note__note-content__structure">
             <div className="create-note__note-content__structure__headers">
               <input
+                className="create-note__note-content__structure__headers__items"
                 type="text"
                 placeholder="Insert here the title of the note"
                 name="title"
               />
-              <select placeholder="5" name="priority">
+              <select
+                className="create-note__note-content__structure__headers__items"
+                placeholder="5"
+                name="priority"
+              >
                 <option hidden value={2}>
                   Priority (default: 2)
                 </option>

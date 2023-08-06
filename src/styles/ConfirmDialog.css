@@ -19,6 +19,27 @@ main {
   z-index: 2000;
 }
 
+main {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-display {
+  width: 100%;
+  height: 100dvh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1900;
+  background-color: rgba(0, 0, 0, 0.6666666667);
+}
+.modal-display__box {
+  width: 90%;
+  height: auto;
+  z-index: 2000;
+}
+
 .create-note-container {
   width: 100%;
   height: auto;
@@ -108,5 +129,11 @@ main {
     opacity: 1;
   }
 }
+.confirm-dialog {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/*# sourceMappingURL=CreateNote.css.map */
+/*# sourceMappingURL=ConfirmDialog.css.map */

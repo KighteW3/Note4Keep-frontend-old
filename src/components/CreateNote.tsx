@@ -5,6 +5,7 @@ import { hostB, hostF, portB, portF } from "./host";
 import "../styles/CreateNote.css";
 import { useNavigate } from "react-router-dom";
 import { turnDialog, dialogToShow } from "../store/dialogDisplay";
+import DialogsBar from "./DialogsBar";
 
 interface Form {
   title: { value: string };
@@ -78,45 +79,21 @@ export default function CreateNote() {
     }
   };
 
-  const handleExit = () => {
-    dispatch(turnDialog(false));
-    dispatch(dialogToShow(<></>));
-    dispatch(refreshCount(refresh + 1));
-  };
-
   return (
     <div className="create-note-container">
       <div className="create-note">
-        <div className="create-note__note-bar">
-          <h2 className="create-note__note-bar__title">Crear nota</h2>
-          <button className="create-note__note-bar__exit" onClick={handleExit}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-        <form onSubmit={handleSubmit} className="create-note__note-content">
-          <div className="create-note__note-content__structure">
-            <div className="create-note__note-content__structure__headers">
+        <DialogsBar title="Create note" />
+        <form onSubmit={handleSubmit} className="create-note__content">
+          <div className="create-note__content__structure">
+            <div className="create-note__content__structure__headers">
               <input
-                className="create-note__note-content__structure__headers__items"
+                className="create-note__content__structure__headers__items"
                 type="text"
                 placeholder="Insert here the title of the note"
                 name="title"
               />
               <select
-                className="create-note__note-content__structure__headers__items"
+                className="create-note__content__structure__headers__items"
                 placeholder="5"
                 name="priority"
               >
@@ -128,7 +105,7 @@ export default function CreateNote() {
                 })}
               </select>
             </div>
-            <div className="create-note__note-content__structure__body">
+            <div className="create-note__content__structure__body">
               <textarea name="text"></textarea>
             </div>
             <input type="submit" value="Submit" />

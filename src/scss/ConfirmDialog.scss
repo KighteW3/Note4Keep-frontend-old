@@ -1,0 +1,9 @@
+@import "./App.scss";
+@import "./CreateNote.scss";
+
+.confirm-dialog {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,34 @@
+@import "./App.scss";
+
+.dialogs-bar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &__title {
+    font-size: 20px;
+  }
+
+  &__exit {
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    right: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+    background-color: beige;
+    border: none;
+    outline: none;
+
+    svg {
+      height: 80%;
+      width: 80%;
+    }
+  }
+}

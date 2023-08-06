@@ -4,7 +4,7 @@ import DialogsBar from "./DialogsBar";
 export default function ConfirmDialog() {
   return (
     <div className="confirm-dialog">
-      <DialogsBar />
+      <DialogsBar title="Confirm" />
     </div>
   );
 }

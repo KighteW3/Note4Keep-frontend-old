@@ -51,16 +51,17 @@ main {
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   background-color: brown;
-  padding: 0 20px;
   border-radius: 15px;
   animation-name: apex;
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
 }
 .create-note__content {
-  width: 100%;
+  width: 90%;
   height: auto;
   display: flex;
   justify-content: center;
@@ -134,6 +135,27 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: red;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
+.confirm-dialog__container {
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  margin: 20px;
+  border-radius: 15px;
+}
+.confirm-dialog__container__question {
+  font-size: 30px;
+  margin: 0 10px 20px 10px;
 }
 
 /*# sourceMappingURL=ConfirmDialog.css.map */

@@ -26,10 +26,6 @@ export default function SearchNotes() {
   const URL = `http://${hostB}:5722/api/notes/some-note`;
 
   useEffect(() => {
-    if (searchQuery === "" || window.location.pathname === "/notes/search/") {
-      navigate(`../notes/`, { replace: true });
-    }
-
     const token = window.localStorage.getItem("SESSION_ID");
 
     (async () => {
@@ -56,6 +52,14 @@ export default function SearchNotes() {
         }
       }
     })();
+
+    if (
+      searchQuery === "" ||
+      window.location.pathname === "/notes/search/" ||
+      !searchQuery
+    ) {
+      navigate(`../notes/`, { replace: true });
+    }
   }, [URL, searchQuery, navigate, refresh]);
 
   useEffect(() => {

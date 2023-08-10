@@ -26,6 +26,10 @@ main {
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: rgba(255, 255, 255, 0.2666666667);
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-radius: 15px 15px 0 0;
 }
 .dialogs-bar__title {
   font-size: 20px;
@@ -43,6 +47,7 @@ main {
   background-color: beige;
   border: none;
   outline: none;
+  margin: 0 20px;
 }
 .dialogs-bar__exit svg {
   height: 80%;

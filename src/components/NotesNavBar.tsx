@@ -5,12 +5,14 @@ import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { dialogToShow, turnDialog } from "../store/dialogDisplay";
 import CreateNote from "./CreateNote";
 import ConfirmDialog from "./ConfirmDialog";
+import { refreshCount } from "../store/refreshNotes";
 
 interface FormStructure extends HTMLFormElement {
   search: { value: string };
 }
 
 export default function NotesNavBar() {
+  const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
   const dialogTurn = useAppSelector((state) => state.dialogDisplay.turn);
   const dialogContent = useAppSelector((state) => state.dialogDisplay.content);
@@ -34,8 +36,16 @@ export default function NotesNavBar() {
   const handleDelete = () => {
     if (!dialogTurn) {
       dispatch(turnDialog(true));
-      dispatch(dialogToShow(<ConfirmDialog />));
+      dispatch(
+        dialogToShow(
+          <ConfirmDialog question="Are you sure about deleting all notes from account?" />
+        )
+      );
     }
+  };
+
+  const handleRefresh = () => {
+    dispatch(refreshCount(refresh + 1));
   };
 
   return (
@@ -47,6 +57,7 @@ export default function NotesNavBar() {
             type="search"
             placeholder="awdadsawdad"
             name="search"
+            required
           />
           <button>
             <svg
@@ -67,7 +78,26 @@ export default function NotesNavBar() {
             <input id="notes-nav__bar__form__submit" type="submit" value="" />
           </button>
         </form>
+
         <div className="notes-nav__bar__buttons">
+          <div className="notes-nav__bar__buttons__button notes-nav__bar__buttons__refresh">
+            <button onClick={handleRefresh}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                />
+              </svg>
+            </button>
+          </div>
           <div className="notes-nav__bar__buttons__button notes-nav__bar__buttons__delete">
             <button onClick={handleDelete}>
               <svg

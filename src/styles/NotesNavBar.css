@@ -126,6 +126,9 @@ main {
   width: 70%;
   height: 70%;
 }
+.notes-nav__bar__buttons__refresh {
+  background-color: yellow;
+}
 .notes-nav__bar__buttons__delete {
   background-color: #e22;
 }

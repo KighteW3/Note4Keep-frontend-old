@@ -11,16 +11,17 @@
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   background-color: brown;
-  padding: 0 20px;
   border-radius: $border-radius;
   animation-name: apex;
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
 
   &__content {
-    width: 100%;
+    width: 90%;
     height: auto;
     display: flex;
     justify-content: center;

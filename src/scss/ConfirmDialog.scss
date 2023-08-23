@@ -10,6 +10,10 @@
   background-color: red;
   box-sizing: border-box;
   border-radius: $border-radius;
+  opacity: 0;
+  animation-name: dialogTransition;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
 
   &__container {
     width: 90%;

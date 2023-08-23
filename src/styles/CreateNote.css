@@ -19,6 +19,14 @@ main {
   z-index: 2000;
 }
 
+@keyframes dialogTransition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .create-note-container {
   width: 100%;
   height: auto;
@@ -35,7 +43,8 @@ main {
   flex-direction: column;
   background-color: brown;
   border-radius: 15px;
-  animation-name: apex;
+  opacity: 0;
+  animation-name: dialogTransition;
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
 }
@@ -98,15 +107,6 @@ main {
 @media only screen and (max-width: 720px) {
   .create-note__content__structure__body textarea {
     max-height: 50dvh;
-  }
-}
-
-@keyframes apex {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 

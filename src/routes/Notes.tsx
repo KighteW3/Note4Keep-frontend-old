@@ -53,6 +53,7 @@ export default function Notes() {
           const result = await fetch(URL, data);
           const res = await result.json();
           setNotesList(res.result);
+          console.log("funciona");
         } catch (e) {
           console.error(e);
         }

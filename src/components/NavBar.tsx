@@ -118,7 +118,7 @@ export default function NavBar() {
         <div className="nav-bar-mobile__menu">
           <ul className="nav-bar-mobile__menu__list">
             <li className="nav-bar-mobile__menu__list__home">
-              <Link to="/">
+              <Link to="/" aria-label="Home">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

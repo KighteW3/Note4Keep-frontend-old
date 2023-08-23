@@ -19,6 +19,14 @@ main {
   z-index: 2000;
 }
 
+@keyframes dialogTransition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .note-page-nav-container {
   width: 100%;
   height: 200px;

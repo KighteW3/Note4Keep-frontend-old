@@ -13,10 +13,10 @@ export default function ConfirmDialog({ question }: ConfirmDialog) {
         <h2 className="confirm-dialog__container__question">{question}</h2>
         <div className="confirm-dialog__container__options">
           <button className="confirm-dialog__container__options__button confirm-dialog__container__options__cancel">
-            cancel
+            No
           </button>
           <button className="confirm-dialog__container__options__button confirm-dialog__container__options__confirm">
-            confirm
+            Yes
           </button>
         </div>
       </div>

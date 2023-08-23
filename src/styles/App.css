@@ -19,4 +19,13 @@ main {
   z-index: 2000;
 }
 
+@keyframes dialogTransition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /*# sourceMappingURL=App.css.map */

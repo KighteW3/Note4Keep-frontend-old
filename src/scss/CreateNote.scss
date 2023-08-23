@@ -16,7 +16,8 @@
   flex-direction: column;
   background-color: brown;
   border-radius: $border-radius;
-  animation-name: apex;
+  opacity: 0;
+  animation-name: dialogTransition;
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
 
@@ -85,14 +86,5 @@
         }
       }
     }
-  }
-}
-
-@keyframes apex {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

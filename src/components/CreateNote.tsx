@@ -3,8 +3,6 @@ import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { refreshCount, refreshLog } from "../store/refreshNotes";
 import { hostB, hostF, portB, portF } from "./host";
 import "../styles/CreateNote.css";
-import { useNavigate } from "react-router-dom";
-import { turnDialog, dialogToShow } from "../store/dialogDisplay";
 import DialogsBar from "./DialogsBar";
 
 interface Form {
@@ -17,7 +15,6 @@ export default function CreateNote() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
   const [optionsList, setOptionsList] = useState([<></>]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const x = [];

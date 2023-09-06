@@ -4,8 +4,8 @@ import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
 import NotePreview from "../components/NotePreview";
 import NotePageNav from "../components/NotePageNav";
-import { hostB } from "../components/host";
 import { useAppSelector } from "../hooks/store";
+import { URLbackend } from "../assets/URLs";
 
 export interface Note {
   note_id: string;
@@ -31,7 +31,7 @@ export default function Notes() {
   const { state } = useLocation();
   const [returnNotes, setReturnNotes] = useState(<></>);
 
-  const URL = `http://${hostB}:5722/api/notes`;
+  const URL = `${URLbackend}/api/notes`;
 
   // useEffect para el funcionamiento del componente
   useEffect(() => {
@@ -53,7 +53,6 @@ export default function Notes() {
           const result = await fetch(URL, data);
           const res = await result.json();
           setNotesList(res.result);
-          console.log("funciona");
         } catch (e) {
           console.error(e);
         }

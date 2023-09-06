@@ -1,3 +1,9 @@
+import { logOutFunc } from "../components/logOut";
+
 export default function Profile() {
-  return (<></>)
+  return (
+    <>
+      <button onClick={logOutFunc}>LogOut</button>
+    </>
+  );
 }

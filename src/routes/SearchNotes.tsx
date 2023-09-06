@@ -5,8 +5,8 @@ import type { Note } from "./Notes";
 
 import "../styles/SearchNotes.css";
 import NotePageNav from "../components/NotePageNav";
-import { hostB } from "../components/host";
 import { useAppSelector } from "../hooks/store";
+import { URLbackend } from "../assets/URLs";
 
 const noteExample = {
   note_id: "id example",
@@ -15,6 +15,8 @@ const noteExample = {
   text: "text example",
 };
 
+const URL = `${URLbackend}/api/notes/some-note`;
+
 export default function SearchNotes() {
   const { searchQuery, numPage } = useParams();
   const [notesList, setNotesList] = useState<Note[]>([noteExample]);
@@ -22,8 +24,6 @@ export default function SearchNotes() {
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
   const navigate = useNavigate();
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
-
-  const URL = `http://${hostB}:5722/api/notes/some-note`;
 
   useEffect(() => {
     const token = window.localStorage.getItem("SESSION_ID");
@@ -60,7 +60,7 @@ export default function SearchNotes() {
     ) {
       navigate(`../notes/`, { replace: true });
     }
-  }, [URL, searchQuery, navigate, refresh]);
+  }, [searchQuery, navigate, refresh]);
 
   useEffect(() => {
     const numOfPages =

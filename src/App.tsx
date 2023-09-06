@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/store";
 import { updateLoginInfo } from "./store/userInfo";
 import SearchNotes from "./routes/SearchNotes";
 import { dialogToShow, turnDialog } from "./store/dialogDisplay";
+import Profile from "./routes/Profile";
 
 interface resultInfo {
   ok: boolean;
@@ -59,6 +60,7 @@ export default function App() {
         <Route path="notes/id/:noteId" element={<SpecificNote />} />
         <Route path="users/login" element={<Login />} />
         <Route path="users/register" element={<Register />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
       <div style={{ height: "300px" }}></div>

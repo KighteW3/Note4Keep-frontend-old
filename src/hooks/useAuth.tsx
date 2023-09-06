@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { hostB } from "../components/host";
+import { URLbackend } from "../assets/URLs";
 
 interface resultInfo {
   ok: boolean;
@@ -25,7 +25,7 @@ const useAuth = () => {
       const token = JSON.parse(tokenString);
 
       (async () => {
-        const URL = `http://${hostB}:5722/api/users/check`;
+        const URL = `${URLbackend}/api/users/check`;
 
         const result = await fetch(URL, {
           method: "GET",

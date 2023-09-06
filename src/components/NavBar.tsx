@@ -1,98 +1,145 @@
 import { useEffect, useState } from "react";
 import "../styles/NavBar.css";
-import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { hostF } from "./host";
 import RegisterIcon, {
+  DoubleArrowIcon,
   HomeIcon,
   LoginIcon,
   NotesIcon,
   ProfileIcon,
 } from "../assets/Icons";
+import { NavLink } from "./NavLink";
+
+interface ArrowAnimation {
+  name: string;
+  duration: string;
+  direction: string;
+  fillMode: string;
+}
 
 export default function NavBar() {
   const [userMenuDesktop, setUserMenuDesktop] = useState(<></>);
   const [userMenuMobile, setUserMenuMobile] = useState(<></>);
   const authData = useAuth();
-
-  const handleClick = () => {
-    window.localStorage.removeItem("SESSION_ID");
-    window.open(`http://${hostF}:5173/`, "_self");
-  };
+  const [navBarHidden, setNavBarHidden] = useState(false);
+  const [arrowAnimation, setArrowAnimation] = useState<ArrowAnimation>({
+    name: "rotate",
+    duration: "0.5s",
+    direction: "normal",
+    fillMode: "forwards",
+  });
 
   useEffect(() => {
     if (authData.ok) {
       setUserMenuDesktop(
-        <>
-          <button onClick={handleClick}>Log out</button>
-        </>
+        <NavLink to="/profile">
+          <ProfileIcon />
+        </NavLink>
       );
       setUserMenuMobile(
-        <>
-          <li className="nav-bar-mobile__menu__list__profile">
-            <Link to="/profile">
-              <ProfileIcon />
-            </Link>
-          </li>
-        </>
+        <li className="nav-bar-mobile__menu__list__profile">
+          <NavLink to="/profile">
+            <ProfileIcon />
+          </NavLink>
+        </li>
       );
     } else {
       setUserMenuDesktop(
         <>
-          <div>
-            <Link to="/users/login">Login</Link>
+          <div className="nav-bar-login-button">
+            <NavLink to="/users/login">Login</NavLink>
           </div>
-          <div>
-            <Link to="/users/register">Register</Link>
+          <div className="nav-bar-register-button">
+            <NavLink to="/users/register">Register</NavLink>
           </div>
         </>
       );
       setUserMenuMobile(
         <>
           <li className="nav-bar-mobile__menu__list__profile">
-            <Link to="/users/login">
+            <NavLink to="/users/login">
               <LoginIcon />
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-bar-mobile__menu__list__register">
-            <Link to="/users/register">
+            <NavLink to="/users/register">
               <RegisterIcon />
-            </Link>
+            </NavLink>
           </li>
         </>
       );
     }
   }, [authData]);
 
+  const toggleNavBar = () => {
+    if (navBarHidden) {
+      setNavBarHidden(false);
+    } else {
+      setNavBarHidden(true);
+    }
+  };
+
+  useEffect(() => {
+    let props = {
+      name: "rotate",
+      duration: "0.5s",
+      direction: "normal",
+      fillMode: "forwards",
+    };
+
+    if (!navBarHidden) {
+      props = {
+        name: "rotateReverse",
+        duration: "0.5s",
+        direction: "normal",
+        fillMode: "forwards",
+      };
+    }
+
+    setArrowAnimation(props);
+  }, [navBarHidden]);
+
   return (
     <>
       <nav className="nav-bar-desktop">
-        <ul className="nav-bar-desktop__list">
+        <ul
+          style={{
+            display: navBarHidden ? "none" : "flex",
+          }}
+          className="nav-bar-desktop__list"
+        >
           <li className="nav-bar-desktop__list__home">
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/notes" state={{ refreshNow: true }}>
-              Notes
-            </Link>
+            <NavLink to="/notes">Notes</NavLink>
           </li>
           <li>{userMenuDesktop}</li>
         </ul>
-        <div className="nav-bar-desktop__toggler"></div>
+        <div onClick={toggleNavBar} className="nav-bar-desktop__toggler">
+          <DoubleArrowIcon
+            style={{
+              animationName: arrowAnimation.name,
+              animationDuration: arrowAnimation.duration,
+              animationDirection: arrowAnimation.direction,
+              animationFillMode: arrowAnimation.fillMode,
+            }}
+          />
+        </div>
       </nav>
 
       <nav className="nav-bar-mobile">
         <div className="nav-bar-mobile__menu">
           <ul className="nav-bar-mobile__menu__list">
             <li className="nav-bar-mobile__menu__list__home">
-              <Link to="/" aria-label="Home">
+              <NavLink to="/" aria-label="Home">
                 <HomeIcon />
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-bar-mobile__menu__list__notes">
-              <Link to="/notes">
+              <NavLink to="/notes">
                 <NotesIcon />
-              </Link>
+              </NavLink>
             </li>
             {userMenuMobile}
           </ul>

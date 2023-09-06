@@ -1,9 +1,9 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { refreshCount, refreshLog } from "../store/refreshNotes";
-import { hostB, hostF, portB, portF } from "./host";
 import "../styles/CreateNote.css";
 import DialogsBar from "./DialogsBar";
+import { URLFrontend, URLbackend } from "../assets/URLs";
 
 interface Form {
   title: { value: string };
@@ -56,7 +56,7 @@ export default function CreateNote() {
         }),
       };
 
-      const URL = `http://${hostB}:${portB}/api/notes/create-note`;
+      const URL = `${URLbackend}/api/notes/create-note`;
 
       (async () => {
         const response = await fetch(URL, data);
@@ -72,7 +72,7 @@ export default function CreateNote() {
         }
       })();
     } else {
-      window.open(`http://${hostF}:${portF}/`);
+      window.open(`${URLFrontend}/`);
     }
   };
 

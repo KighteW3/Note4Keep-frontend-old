@@ -1,9 +1,9 @@
 import "../styles/Home.css";
 import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NotePreview from "../components/NotePreview";
-import { hostB } from "../components/host";
+import { URLbackend } from "../assets/URLs";
 
 interface resultInfo {
   ok: boolean;
@@ -18,6 +18,7 @@ interface notes {
   title: string;
   priority: number;
   text: string;
+  date: Date;
 }
 
 const defaultNote = {
@@ -25,13 +26,30 @@ const defaultNote = {
   title: "title-example",
   priority: 5,
   text: "text-example",
+  date: new Date(),
 };
+
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export default function Home() {
   const logged: resultInfo = useAppSelector((state) => state.userInfo);
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
   const [notesList, setNotesList] = useState<notes[] | null>([defaultNote]);
+  const [actualDate, setActualDate] = useState(new Date());
 
   const location = useLocation();
   const render = location.state?.shouldRender;
@@ -42,7 +60,7 @@ export default function Home() {
     if (token) {
       (async () => {
         const tokenDecoded = await JSON.parse(token);
-        const URL = `http://${hostB}:5722/api/notes`;
+        const URL = `${URLbackend}/api/notes`;
 
         const data = {
           method: "GET",
@@ -68,6 +86,10 @@ export default function Home() {
     } else {
       setNotesList(null);
     }
+
+    const actualDate = new Date();
+
+    setActualDate(actualDate);
   }, [refresh, logged, dispatch, render]);
 
   return (
@@ -83,18 +105,32 @@ export default function Home() {
         {notesList !== null ? (
           <div className="home-notes-preview__container">
             <div className="home-notes-preview__container__title">
-              <h2>Notes preview</h2>
+              <h2>
+                Notes preview -{" "}
+                {monthNames[actualDate.getMonth()].substring(0, 3)}
+                {"/"}
+                {actualDate.getFullYear()}
+              </h2>
             </div>
             <div className="home-notes-preview__container__content">
               {notesList.map((result) => {
-                return (
-                  <NotePreview
-                    note_id={result.note_id}
-                    title={result.title}
-                    priority={result.priority}
-                    text={result.text}
-                  />
-                );
+                const actualYear = new Date().getFullYear();
+                const actualMonth = new Date().getMonth();
+                const resDate = new Date(result.date);
+
+                if (
+                  resDate.getFullYear() === actualYear &&
+                  resDate.getMonth() == actualMonth
+                ) {
+                  return (
+                    <NotePreview
+                      note_id={result.note_id}
+                      title={result.title}
+                      priority={result.priority}
+                      text={result.text}
+                    />
+                  );
+                }
               })}
             </div>
           </div>

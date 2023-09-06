@@ -15,7 +15,6 @@ export default function NotesNavBar() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
   const dialogTurn = useAppSelector((state) => state.dialogDisplay.turn);
-  const dialogContent = useAppSelector((state) => state.dialogDisplay.content);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<FormStructure>) => {
@@ -24,6 +23,7 @@ export default function NotesNavBar() {
     const searchQuery = e.currentTarget.search.value;
 
     navigate(`../notes/search/${searchQuery}`, { replace: true });
+    dispatch(refreshCount(refresh + 1));
   };
 
   const WriteNote = () => {

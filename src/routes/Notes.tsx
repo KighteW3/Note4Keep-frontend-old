@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/Notes.css";
-import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
 import NotePreview from "../components/NotePreview";
 import NotePageNav from "../components/NotePageNav";
@@ -114,7 +114,7 @@ export default function Notes() {
         ? true
         : false
     );
-  }, [numPage, state]);
+  }, [numPage, state, refresh]);
 
   useEffect(() => {
     if (isRoot) {

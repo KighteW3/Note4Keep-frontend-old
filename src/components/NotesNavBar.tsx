@@ -22,8 +22,8 @@ export default function NotesNavBar() {
 
     const searchQuery = e.currentTarget.search.value;
 
-    navigate(`../notes/search/${searchQuery}`, { replace: true });
     dispatch(refreshCount(refresh + 1));
+    navigate(`../notes/search/${searchQuery}`, { replace: true });
   };
 
   const WriteNote = () => {
@@ -55,7 +55,7 @@ export default function NotesNavBar() {
           <input
             id="notes-nav__bar__form__search"
             type="search"
-            placeholder="awdadsawdad"
+            placeholder="Search for your notes here..."
             name="search"
             required
           />

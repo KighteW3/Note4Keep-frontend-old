@@ -1,4 +1,4 @@
-import { hostB, hostF, portB, portF } from "./host";
+import { hostB, hostF, portF } from "./host";
 
 export const URLbackend = `https://${hostB}`;
 

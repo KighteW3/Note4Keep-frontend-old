@@ -101,13 +101,13 @@ export default function SearchNotes() {
     if (notesList) {
       setNotePageOrd(notesPages);
     }
-  }, [notesList, refresh]);
+  }, [notesList, refresh, searchQuery]);
 
   useEffect(() => {
     const a = numPage ? parseInt(numPage) - 1 : 0;
 
     setNumPageToUse(a);
-  }, [numPage, notePageOrd, refresh]);
+  }, [numPage, notePageOrd, refresh, searchQuery]);
 
   return (
     <div className="search-notes">

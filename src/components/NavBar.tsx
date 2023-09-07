@@ -33,16 +33,16 @@ export default function NavBar() {
   const [navBarDesktop, setNavBarDesktop] = useState("nav-bar-desktop");
 
   useEffect(() => {
-    if (window.screen.availWidth > 720) {
-      window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
+      if (window.screen.availWidth > 720) {
         const newScrollY = window.scrollY;
         if (newScrollY === 0) {
           setNavBarDesktop("nav-bar-desktop");
         } else {
           setNavBarDesktop("nav-bar-desktop-fixed");
         }
-      });
-    }
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -108,8 +108,8 @@ export default function NavBar() {
   }, [navBarHidden]);
 
   useEffect(() => {
-    if (window.screen.availWidth >= 720) {
-      window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
+      if (window.screen.availWidth <= 720) {
         const newScrollY = window.scrollY;
         if (newScrollY > scrollYOld) {
           setNavBarMobile("nav-bar-mobile-hide");
@@ -118,8 +118,8 @@ export default function NavBar() {
           setNavBarMobile("nav-bar-mobile-show");
           setScrollYOld(window.scrollY);
         }
-      });
-    }
+      }
+    });
   }, [scrollYOld]);
 
   const toggleNavBar = () => {

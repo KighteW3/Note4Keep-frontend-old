@@ -30,6 +30,20 @@ export default function NavBar() {
   });
   const [scrollYOld, setScrollYOld] = useState(0);
   const [navBarMobile, setNavBarMobile] = useState("nav-bar-mobile");
+  const [navBarDesktop, setNavBarDesktop] = useState("nav-bar-desktop");
+
+  useEffect(() => {
+    if (window.screen.availWidth > 720) {
+      window.addEventListener("scroll", () => {
+        const newScrollY = window.scrollY;
+        if (newScrollY === 0) {
+          setNavBarDesktop("nav-bar-desktop");
+        } else {
+          setNavBarDesktop("nav-bar-desktop-fixed");
+        }
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (authData.ok) {
@@ -94,16 +108,18 @@ export default function NavBar() {
   }, [navBarHidden]);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      const newScrollY = window.scrollY;
-      if (newScrollY > scrollYOld) {
-        setNavBarMobile("nav-bar-mobile-hide");
-        setScrollYOld(window.scrollY);
-      } else {
-        setNavBarMobile("nav-bar-mobile-show");
-        setScrollYOld(window.scrollY);
-      }
-    });
+    if (window.screen.availWidth >= 720) {
+      window.addEventListener("scroll", () => {
+        const newScrollY = window.scrollY;
+        if (newScrollY > scrollYOld) {
+          setNavBarMobile("nav-bar-mobile-hide");
+          setScrollYOld(window.scrollY);
+        } else {
+          setNavBarMobile("nav-bar-mobile-show");
+          setScrollYOld(window.scrollY);
+        }
+      });
+    }
   }, [scrollYOld]);
 
   const toggleNavBar = () => {
@@ -116,7 +132,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="nav-bar-desktop">
+      <nav className={navBarDesktop}>
         <ul
           style={{
             display: navBarHidden ? "none" : "flex",

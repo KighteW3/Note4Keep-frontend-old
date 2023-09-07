@@ -27,11 +27,13 @@ main {
     opacity: 1;
   }
 }
-.nav-bar-desktop {
+.nav-bar-desktop, .nav-bar-desktop-fixed {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
+  position: initial;
+  z-index: 3000;
 }
 .nav-bar-desktop__list {
   width: 100%;
@@ -161,6 +163,12 @@ main {
   height: 20px;
 }
 
+.nav-bar-desktop-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .nav-bar-mobile, .nav-bar-mobile-show, .nav-bar-mobile-hide {
   width: 100%;
   position: fixed;
@@ -239,7 +247,7 @@ main {
 }
 
 @media only screen and (max-width: 720px) {
-  .nav-bar-desktop {
+  .nav-bar-desktop, .nav-bar-desktop-fixed {
     display: none;
   }
   .nav-bar-mobile, .nav-bar-mobile-hide, .nav-bar-mobile-show {

@@ -9,6 +9,8 @@ $nav-bar-mobile-list-padding: 15px;
   height: auto;
   display: flex;
   flex-direction: column;
+  position: initial;
+  z-index: 3000;
 
   &__list {
     width: 100%;
@@ -146,6 +148,13 @@ $nav-bar-mobile-list-padding: 15px;
       height: 20px;
     }
   }
+}
+
+.nav-bar-desktop-fixed {
+  @extend .nav-bar-desktop;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .nav-bar-mobile {

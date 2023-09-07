@@ -28,6 +28,13 @@ export default function NavBar() {
     direction: "normal",
     fillMode: "forwards",
   });
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScrollY(window.scrollY);
+    });
+  }, []);
 
   useEffect(() => {
     if (authData.ok) {
@@ -71,14 +78,6 @@ export default function NavBar() {
     }
   }, [authData]);
 
-  const toggleNavBar = () => {
-    if (navBarHidden) {
-      setNavBarHidden(false);
-    } else {
-      setNavBarHidden(true);
-    }
-  };
-
   useEffect(() => {
     let props = {
       name: "rotate",
@@ -98,6 +97,14 @@ export default function NavBar() {
 
     setArrowAnimation(props);
   }, [navBarHidden]);
+
+  const toggleNavBar = () => {
+    if (navBarHidden) {
+      setNavBarHidden(false);
+    } else {
+      setNavBarHidden(true);
+    }
+  };
 
   return (
     <>

@@ -34,6 +34,8 @@ export default function NavBar() {
     window.addEventListener("scroll", () => {
       setScrollY(window.scrollY);
     });
+
+    console.log(scrollY);
   }, []);
 
   useEffect(() => {

@@ -161,7 +161,7 @@ main {
   height: 20px;
 }
 
-.nav-bar-mobile {
+.nav-bar-mobile, .nav-bar-mobile-show, .nav-bar-mobile-hide {
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -210,11 +210,39 @@ main {
   color: black;
 }
 
+@keyframes hideNavBar {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 100%);
+  }
+}
+@keyframes showNavBar {
+  0% {
+    transform: translate(0, 100%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.nav-bar-mobile-hide {
+  animation-name: hideNavBar;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.nav-bar-mobile-show {
+  animation-name: showNavBar;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
 @media only screen and (max-width: 720px) {
   .nav-bar-desktop {
     display: none;
   }
-  .nav-bar-mobile {
+  .nav-bar-mobile, .nav-bar-mobile-hide, .nav-bar-mobile-show {
     display: flex;
   }
 }

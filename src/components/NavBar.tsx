@@ -28,15 +28,8 @@ export default function NavBar() {
     direction: "normal",
     fillMode: "forwards",
   });
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScrollY(window.scrollY);
-    });
-
-    console.log(scrollY);
-  }, []);
+  const [scrollYOld, setScrollYOld] = useState(0);
+  const [navBarMobile, setNavBarMobile] = useState("nav-bar-mobile");
 
   useEffect(() => {
     if (authData.ok) {
@@ -100,6 +93,19 @@ export default function NavBar() {
     setArrowAnimation(props);
   }, [navBarHidden]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const newScrollY = window.scrollY;
+      if (newScrollY > scrollYOld) {
+        setNavBarMobile("nav-bar-mobile-hide");
+        setScrollYOld(window.scrollY);
+      } else {
+        setNavBarMobile("nav-bar-mobile-show");
+        setScrollYOld(window.scrollY);
+      }
+    });
+  }, [scrollYOld]);
+
   const toggleNavBar = () => {
     if (navBarHidden) {
       setNavBarHidden(false);
@@ -137,7 +143,7 @@ export default function NavBar() {
         </div>
       </nav>
 
-      <nav className="nav-bar-mobile">
+      <nav className={navBarMobile}>
         <div className="nav-bar-mobile__menu">
           <ul className="nav-bar-mobile__menu__list">
             <li className="nav-bar-mobile__menu__list__home">

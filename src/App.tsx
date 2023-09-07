@@ -63,7 +63,6 @@ export default function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
-      <div style={{ height: "300px" }}></div>
     </main>
   );
 }

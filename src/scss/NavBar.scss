@@ -202,6 +202,38 @@ $nav-bar-mobile-list-padding: 15px;
   }
 }
 
+@keyframes hideNavBar {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 100%);
+  }
+}
+
+@keyframes showNavBar {
+  0% {
+    transform: translate(0, 100%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.nav-bar-mobile-hide {
+  @extend .nav-bar-mobile;
+  animation-name: hideNavBar;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.nav-bar-mobile-show {
+  @extend .nav-bar-mobile;
+  animation-name: showNavBar;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
 @media only screen and (max-width: 720px) {
   .nav-bar-desktop {
     display: none;

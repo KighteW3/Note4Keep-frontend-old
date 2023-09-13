@@ -1,6 +1,8 @@
 import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { URLFrontend, URLbackend } from "../assets/URLs";
+import "../styles/Login.css";
+import "../styles/AuthInterface.css";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -48,10 +50,19 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="username" name="username" required />
-      <input type="password" placeholder="password" name="password" required />
-      <input type="submit" value="Enviar" />
-    </form>
+    <div className="login">
+      <div className="login-content">
+        <form onSubmit={handleSubmit} className="auth-interface">
+          <input type="text" placeholder="username" name="username" required />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            required
+          />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </div>
   );
 }

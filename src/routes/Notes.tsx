@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/Notes.css";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import NotesNavBar from "../components/NotesNavBar";
 import NotePreview from "../components/NotePreview";
 import NotePageNav from "../components/NotePageNav";
@@ -21,6 +21,8 @@ const noteExample = {
   text: "text example",
 };
 
+const URL = `${URLbackend}/api/notes`;
+
 export default function Notes() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const [notesList, setNotesList] = useState<Note[]>([noteExample]);
@@ -30,8 +32,7 @@ export default function Notes() {
   const { numPage } = useParams();
   const { state } = useLocation();
   const [returnNotes, setReturnNotes] = useState(<></>);
-
-  const URL = `${URLbackend}/api/notes`;
+  const navigate = useNavigate();
 
   // useEffect para el funcionamiento del componente
   useEffect(() => {
@@ -59,10 +60,11 @@ export default function Notes() {
       })();
     } else {
       console.error("No auth provided");
+      navigate("../users/register", { replace: true });
     }
 
     window.scrollTo(0, 0);
-  }, [URL, refresh]);
+  }, [refresh, navigate]);
 
   // useEffect para la gestión de las páginas
   useEffect(() => {

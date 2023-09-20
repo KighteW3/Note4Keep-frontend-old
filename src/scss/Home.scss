@@ -1,4 +1,4 @@
-@import "./App.scss";
+@use "./App.scss";
 
 .home {
   width: 100%;
@@ -63,7 +63,7 @@
     width: 90%;
     height: 100px;
     background-color: red;
-    border-radius: $border-radius;
+    border-radius: App.$border-radius;
     display: flex;
     justify-content: center;
     align-items: center;

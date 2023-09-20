@@ -1,4 +1,4 @@
-@import "./App.scss";
+@use "./App.scss";
 $navHeightItems: 40px;
 $navHeightItemsMobile: 50px;
 
@@ -17,7 +17,7 @@ $navHeightItemsMobile: 50px;
     margin: 15px 30px;
     padding: 10px;
     box-sizing: border-box;
-    border-radius: $border-radius;
+    border-radius: App.$border-radius;
     background-color: mediumturquoise;
     gap: 10px;
 
@@ -115,7 +115,7 @@ $navHeightItemsMobile: 50px;
       }
 
       &__refresh {
-        background-color: yellow
+        background-color: yellow;
       }
 
       &__delete {

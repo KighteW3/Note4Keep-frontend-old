@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useAppDispatch } from "../hooks/store";
 import { updateLoginInfo } from "../store/userInfo";
 import { URLFrontend, URLbackend } from "../assets/URLs";
+import "../styles/Register.css";
 
 export default function Register() {
   const dispatch = useAppDispatch();

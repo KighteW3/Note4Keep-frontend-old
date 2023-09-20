@@ -13,6 +13,7 @@ import { updateLoginInfo } from "./store/userInfo";
 import SearchNotes from "./routes/SearchNotes";
 import { dialogToShow, turnDialog } from "./store/dialogDisplay";
 import Profile from "./routes/Profile";
+import Footer from "./components/Footer";
 
 interface resultInfo {
   ok: boolean;
@@ -63,6 +64,7 @@ export default function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="*" element={<>Not found</>} />
       </Routes>
+      <Footer />
     </main>
   );
 }

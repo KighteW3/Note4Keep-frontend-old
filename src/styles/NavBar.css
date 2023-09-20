@@ -28,6 +28,7 @@ main {
   }
 }
 .nav-bar-desktop, .nav-bar-desktop-fixed {
+  box-sizing: border-box;
   width: 100%;
   height: auto;
   display: flex;
@@ -164,7 +165,7 @@ main {
 }
 
 .nav-bar-desktop-fixed {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
 }

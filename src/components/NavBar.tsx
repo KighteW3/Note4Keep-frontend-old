@@ -28,6 +28,7 @@ export default function NavBar() {
     direction: "normal",
     fillMode: "forwards",
   });
+
   const [scrollYOld, setScrollYOld] = useState(0);
   const [navBarMobile, setNavBarMobile] = useState("nav-bar-mobile");
   const [navBarDesktop, setNavBarDesktop] = useState("nav-bar-desktop");

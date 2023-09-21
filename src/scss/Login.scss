@@ -1,15 +1,1 @@
 @use "./App.scss";
-
-.login {
-  box-sizing: border-box;
-  height: 100dvh;
-  background-image: url("/login-background.jpg");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &__content {
-    box-sizing: border-box;
-  }
-}

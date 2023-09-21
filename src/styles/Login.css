@@ -27,17 +27,5 @@ main {
     opacity: 1;
   }
 }
-.login {
-  box-sizing: border-box;
-  height: 100dvh;
-  background-image: url("/login-background.jpg");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.login__content {
-  box-sizing: border-box;
-}
 
 /*# sourceMappingURL=Login.css.map */

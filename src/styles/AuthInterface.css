@@ -27,10 +27,32 @@ main {
     opacity: 1;
   }
 }
-.auth-interface {
+.auth {
+  box-sizing: border-box;
+  height: 100dvh;
+  background-image: url("/Nature-beach.jpg");
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.auth__content {
+  box-sizing: border-box;
+}
+
+.auth-interface {
+  width: auto;
+  padding: 20px;
+  min-width: min-content;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.auth-interface__content {
+  display: flex;
   flex-direction: column;
 }
 

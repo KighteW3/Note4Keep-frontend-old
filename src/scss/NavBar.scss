@@ -3,6 +3,8 @@
 $displayMobile: flex;
 $nav-bar-mobile-list-gap: 15px;
 $nav-bar-mobile-list-padding: 15px;
+$buttonActive: blue;
+$buttonColorActive: red;
 
 .nav-bar-desktop {
   box-sizing: border-box;
@@ -108,8 +110,8 @@ $nav-bar-mobile-list-padding: 15px;
           opacity: 1;
         }
 
-        background-color: aqua;
-        color: red;
+        background-color: $buttonActive;
+        color: $buttonColorActive;
         pointer-events: none;
         transition: 0.5s;
       }
@@ -193,6 +195,7 @@ $nav-bar-mobile-list-padding: 15px;
         width: 100px;
         height: 40px;
         background-color: white;
+        border-radius: 20px;
 
         a {
           width: 100%;
@@ -200,11 +203,32 @@ $nav-bar-mobile-list-padding: 15px;
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: 0.5s;
+          border-radius: 20px;
 
           svg {
+            transition: 0.5s;
             width: 80%;
             height: 80%;
             color: black;
+          }
+        }
+
+        a.is-active {
+          &:hover {
+            opacity: 1;
+          }
+
+          background-color: $buttonActive;
+          color: $buttonColorActive;
+          pointer-events: none;
+          transition: 0.5s;
+
+          svg {
+            transition: 0.5s;
+            width: 80%;
+            height: 80%;
+            color: $buttonColorActive;
           }
         }
       }

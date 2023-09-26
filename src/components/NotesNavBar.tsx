@@ -21,9 +21,14 @@ export default function NotesNavBar() {
     e.preventDefault();
 
     const searchQuery = e.currentTarget.search.value;
+    console.log(searchQuery);
 
     dispatch(refreshCount(refresh + 1));
-    navigate(`../notes/search/${searchQuery}`, { replace: true });
+    if (searchQuery == "" || !searchQuery) {
+      navigate("../notes/", { replace: true });
+    } else {
+      navigate(`../notes/search/${searchQuery}`, { replace: true });
+    }
   };
 
   const WriteNote = () => {
@@ -57,7 +62,6 @@ export default function NotesNavBar() {
             type="search"
             placeholder="Search for your notes here..."
             name="search"
-            required
           />
           <button>
             <svg

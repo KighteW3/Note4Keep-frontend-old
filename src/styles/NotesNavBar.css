@@ -130,6 +130,9 @@ main {
   align-items: center;
   padding: 0;
 }
+.notes-nav__bar__buttons__button button:hover {
+  cursor: pointer;
+}
 .notes-nav__bar__buttons__button button svg {
   width: 70%;
   height: 70%;

@@ -39,9 +39,9 @@ export default function CreateNote() {
     const token = window.localStorage.getItem("SESSION_ID");
 
     if (token) {
-      console.log(token);
+      //console.log(token);
       const tokenDecoded = JSON.parse(token);
-      console.log(tokenDecoded);
+      //console.log(tokenDecoded);
 
       const data = {
         method: "POST",
@@ -63,7 +63,7 @@ export default function CreateNote() {
         const resParsed = await response.json();
 
         if (response.ok) {
-          console.log(resParsed.response);
+          //console.log(resParsed.response);
           dispatch(refreshLog("Note created"));
           dispatch(refreshCount(refresh + 1));
           window.scrollTo(0, 0);

@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/store";
 import { dialogToShow, turnDialog } from "../store/dialogDisplay";
 import CreateNote from "./CreateNote";
 import ConfirmDialog from "./ConfirmDialog";
-import { refreshCount } from "../store/refreshNotes";
+import { refreshCount, refreshLog } from "../store/refreshNotes";
+import { URLbackend } from "../assets/URLs";
 
 interface FormStructure extends HTMLFormElement {
   search: { value: string };
@@ -39,11 +40,48 @@ export default function NotesNavBar() {
   };
 
   const handleDelete = () => {
+    const deleteNotes = async () => {
+      const URL = `${URLbackend}/api/notes/delete-all-notes`;
+      const authRaw = window.localStorage.getItem("SESSION_ID");
+
+      if (authRaw) {
+        const auth = JSON.parse(authRaw);
+
+        const data = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${auth.token}`,
+          },
+        };
+
+        try {
+          const result = await fetch(URL, data);
+          const res = await result.json();
+
+          if (res.ok) {
+            console.log("notes deleted");
+            dispatch(refreshCount(refresh + 1));
+            dispatch(refreshLog("Notes deleted"));
+          } else {
+            console.error(res);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        console.error("No auth b");
+      }
+    };
+
     if (!dialogTurn) {
       dispatch(turnDialog(true));
       dispatch(
         dialogToShow(
-          <ConfirmDialog question="Are you sure about deleting all notes from account?" />
+          <ConfirmDialog
+            question="Are you sure about deleting all notes from account?"
+            action={deleteNotes}
+          />
         )
       );
     }

@@ -123,16 +123,18 @@ export default function Notes() {
       if (notePageOrd[numPageToUse]) {
         setReturnNotes(
           <div className="notes-main__notes-container">
-            {notePageOrd[numPageToUse].map((result) => {
-              return (
-                <NotePreview
-                  note_id={result.note_id}
-                  title={result.title}
-                  priority={result.priority}
-                  text={result.text}
-                />
-              );
-            })}
+            <div className="notes-main__notes-container__content">
+              {notePageOrd[numPageToUse].map((result) => {
+                return (
+                  <NotePreview
+                    note_id={result.note_id}
+                    title={result.title}
+                    priority={result.priority}
+                    text={result.text}
+                  />
+                );
+              })}
+            </div>
             <NotePageNav
               numPageInt={numPageToUse}
               notesList={notesList || []}

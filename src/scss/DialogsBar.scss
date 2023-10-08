@@ -17,6 +17,10 @@
   }
 
   &__exit {
+    &:hover {
+      cursor: pointer;
+    }
+
     position: absolute;
     width: 37px;
     height: 37px;

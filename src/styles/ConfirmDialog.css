@@ -141,5 +141,18 @@ main {
   font-size: 30px;
   margin: 0 10px 20px 10px;
 }
+.confirm-dialog__container__options {
+  width: 20%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.confirm-dialog__container__options__button {
+  width: 80px;
+  height: 40px;
+}
+.confirm-dialog__container__options__button:hover {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=ConfirmDialog.css.map */

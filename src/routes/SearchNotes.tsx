@@ -112,20 +112,22 @@ export default function SearchNotes() {
   return (
     <div className="search-notes">
       <div className="search-notes__content">
-        {notesList && notePageOrd[numPageToUse] ? (
-          notePageOrd[numPageToUse].map((result) => {
-            return (
-              <NotePreview
-                note_id={result.note_id}
-                title={result.title}
-                priority={result.priority}
-                text={result.text}
-              />
-            );
-          })
-        ) : (
-          <></>
-        )}
+        <div>
+          {notesList && notePageOrd[numPageToUse] ? (
+            notePageOrd[numPageToUse].map((result) => {
+              return (
+                <NotePreview
+                  note_id={result.note_id}
+                  title={result.title}
+                  priority={result.priority}
+                  text={result.text}
+                />
+              );
+            })
+          ) : (
+            <></>
+          )}
+        </div>
         <NotePageNav
           numPageInt={numPageToUse}
           notesList={notesList || [noteExample]}

@@ -57,6 +57,9 @@ main {
   outline: none;
   margin: 0 20px;
 }
+.dialogs-bar__exit:hover {
+  cursor: pointer;
+}
 .dialogs-bar__exit svg {
   height: 80%;
   width: 80%;

@@ -32,5 +32,21 @@
       font-size: 30px;
       margin: 0 10px 20px 10px;
     }
+
+    &__options {
+      width: 20%;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+
+      &__button {
+        &:hover {
+          cursor: pointer;
+        }
+
+        width: 80px;
+        height: 40px;
+      }
+    }
   }
 }

@@ -125,7 +125,7 @@ export default function SearchNotes() {
               );
             })
           ) : (
-            <></>
+            <>Not found...</>
           )}
         </div>
         <NotePageNav

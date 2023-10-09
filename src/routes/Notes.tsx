@@ -142,6 +142,8 @@ export default function Notes() {
             />
           </div>
         );
+      } else {
+        setReturnNotes(<p>No results...</p>);
       }
     } else {
       setReturnNotes(<Outlet />);

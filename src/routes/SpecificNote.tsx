@@ -6,7 +6,7 @@ export default function SpecificNote() {
 
   return (
     <div className="specific-note">
-      <div className="specific-note__box"></div>
+      <div className="specific-note__box">{noteId}</div>
     </div>
   );
 }

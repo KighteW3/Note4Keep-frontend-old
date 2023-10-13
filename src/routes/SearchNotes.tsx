@@ -121,6 +121,7 @@ export default function SearchNotes() {
                   title={result.title}
                   priority={result.priority}
                   text={result.text}
+                  redirect={result.note_id}
                 />
               );
             })

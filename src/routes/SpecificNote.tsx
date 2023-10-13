@@ -1,7 +1,12 @@
 import { useParams } from "react-router-dom";
+import "../styles/SpecificNote.css";
 
 export default function SpecificNote() {
-  const {noteId} = useParams();
+  const { noteId } = useParams();
 
-  return <>awasdaawdawdawda {noteId}</>;
+  return (
+    <div className="specific-note">
+      <div className="specific-note__box"></div>
+    </div>
+  );
 }

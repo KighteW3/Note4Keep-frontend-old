@@ -1,6 +1,21 @@
 @use "./App.scss";
 
+@keyframes pepito {
+  0% {
+    transform: scale(0.7);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 .note-preview {
+  &:hover {
+    cursor: pointer;
+  }
+
+  animation: pepito forwards 0.5s;
   width: 300px;
   min-width: 300px;
   height: 160px;

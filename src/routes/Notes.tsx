@@ -25,7 +25,7 @@ const URL = `${URLbackend}/api/notes`;
 
 export default function Notes() {
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
-  const [notesList, setNotesList] = useState<Note[]>([noteExample]);
+  const [notesList, setNotesList] = useState<Note[]>([]);
   const [notePageOrd, setNotePageOrd] = useState<Note[][]>([[noteExample]]);
   const [isRoot, setIsRoot] = useState<boolean>(true);
   const [numPageToUse, setNumPageToUse] = useState<number>(0);
@@ -120,7 +120,7 @@ export default function Notes() {
 
   useEffect(() => {
     if (isRoot) {
-      if (notePageOrd[numPageToUse]) {
+      if (notePageOrd[numPageToUse] && notesList && notesList.length > 0) {
         setReturnNotes(
           <div className="notes-main__notes-container">
             <div className="notes-main__notes-container__content">
@@ -131,6 +131,7 @@ export default function Notes() {
                     title={result.title}
                     priority={result.priority}
                     text={result.text}
+                    redirect={result.note_id}
                   />
                 );
               })}

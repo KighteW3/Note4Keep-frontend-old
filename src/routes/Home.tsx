@@ -48,7 +48,7 @@ export default function Home() {
   const logged: resultInfo = useAppSelector((state) => state.userInfo);
   const refresh = useAppSelector((state) => state.refreshNotes.refresh);
   const dispatch = useAppDispatch();
-  const [notesList, setNotesList] = useState<notes[] | null>([defaultNote]);
+  const [notesList, setNotesList] = useState<notes[] | null>([]);
   const [actualDate, setActualDate] = useState(new Date());
 
   const location = useLocation();
@@ -128,6 +128,7 @@ export default function Home() {
                       title={result.title}
                       priority={result.priority}
                       text={result.text}
+                      redirect={result.note_id}
                     />
                   );
                 }

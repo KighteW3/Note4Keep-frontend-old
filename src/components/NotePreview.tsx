@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/NotePreview.css";
 import createRandomString from "./createRandomString";
 
@@ -6,11 +7,21 @@ interface Note {
   title: string;
   priority: number;
   text: string;
+  redirect: string | null;
 }
 
 export default function NotePreview(props: Note) {
+  const navigate = useNavigate();
+
+  const redirectToSpecNote = () => {
+    if (props.redirect) {
+      navigate(`../notes/id/${props.redirect}`, { replace: true });
+    }
+  };
+
   return (
     <div
+      onClick={redirectToSpecNote}
       className="note-preview"
       key={props.note_id || createRandomString(20, false)}
     >

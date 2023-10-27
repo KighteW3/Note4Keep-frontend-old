@@ -112,7 +112,7 @@ export default function SearchNotes() {
   return (
     <div className="search-notes">
       <div className="search-notes__content">
-        <div>
+        <div className="search-notes__content__container">
           {notesList && notePageOrd[numPageToUse] ? (
             notePageOrd[numPageToUse].map((result) => {
               return (

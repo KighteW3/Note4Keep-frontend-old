@@ -66,6 +66,7 @@ main {
 .home-notes-preview__container {
   width: 90%;
   background-color: black;
+  padding: 10px;
 }
 .home-notes-preview__container__title {
   width: 100%;
@@ -78,9 +79,7 @@ main {
 }
 .home-notes-preview__container__content {
   width: 100%;
-  height: min-content;
-  background-color: blue;
-  padding: 20px;
+  height: auto;
   box-sizing: border-box;
   display: flex;
   gap: 10px;
@@ -90,7 +89,7 @@ main {
   width: 90%;
   height: 100px;
   background-color: red;
-  border-radius: 15px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;

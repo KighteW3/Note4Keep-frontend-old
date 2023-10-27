@@ -70,7 +70,7 @@ main {
   height: 100%;
   color: black;
   background-color: aliceblue;
-  border-radius: 15px;
+  border-radius: 10px;
   text-decoration: none;
   padding: 6px 10px;
   height: 30px;
@@ -86,7 +86,7 @@ main {
   position: relative;
 }
 .nav-bar-desktop__list li div.nav-bar-login-button a {
-  border-radius: 15px 0 0 15px;
+  border-radius: 10px 0 0 10px;
 }
 .nav-bar-desktop__list li div.nav-bar-login-button::after {
   content: "";
@@ -100,7 +100,7 @@ main {
   position: relative;
 }
 .nav-bar-desktop__list li div.nav-bar-register-button a {
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 10px 10px 0;
 }
 .nav-bar-desktop__list li div.nav-bar-register-button::after {
   content: "";
@@ -116,7 +116,7 @@ main {
   height: 100%;
   color: black;
   background-color: aliceblue;
-  border-radius: 15px;
+  border-radius: 10px;
   text-decoration: none;
   padding: 6px 10px;
   height: 30px;
@@ -186,6 +186,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 3000;
 }
 .nav-bar-mobile__menu {
   width: 100%;

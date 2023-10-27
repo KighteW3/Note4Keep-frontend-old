@@ -46,7 +46,7 @@ main {
   margin: 15px 30px;
   padding: 10px;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: mediumturquoise;
   gap: 10px;
 }

@@ -55,18 +55,18 @@ export default function Home() {
   const render = location.state?.shouldRender;
 
   useEffect(() => {
-    const token = window.localStorage.getItem("SESSION_ID");
+    const authRaw = window.localStorage.getItem("SESSION_ID");
 
-    if (token) {
+    if (authRaw) {
       (async () => {
-        const tokenDecoded = await JSON.parse(token);
+        const auth = await JSON.parse(authRaw);
         const URL = `${URLbackend}/api/notes`;
 
         const data = {
           method: "GET",
           headers: {
             "content-type": "application/json",
-            authorization: `Bearer ${tokenDecoded.token}`,
+            authorization: `Bearer ${auth.token}`,
           },
         };
 

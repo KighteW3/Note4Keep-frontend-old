@@ -40,7 +40,7 @@ export default function Notes() {
 
     if (authRaw) {
       (async () => {
-        const auth = JSON.parse(authRaw);
+        const auth = await JSON.parse(authRaw);
 
         const data = {
           method: "GET",

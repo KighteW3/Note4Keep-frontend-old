@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { URLFrontend, URLbackend } from "../assets/URLs";
 import "../styles/AuthInterface.css";
 
+const URL = `${URLbackend}/api/users/login`;
+
 export default function Register() {
   const navigate = useNavigate();
 
@@ -31,8 +33,7 @@ export default function Register() {
 
     (async () => {
       try {
-        const url = `${URLbackend}/api/users/login`;
-        const res = await fetch(url, data);
+        const res = await fetch(URL, data);
         const result = await res.json();
 
         if (res.ok) {

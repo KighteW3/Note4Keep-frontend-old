@@ -88,6 +88,7 @@ export default function CreateNote() {
                 type="text"
                 placeholder="Insert here the title of the note"
                 name="title"
+                required
               />
               <select
                 className="create-note__content__structure__headers__items"
@@ -103,7 +104,11 @@ export default function CreateNote() {
               </select>
             </div>
             <div className="create-note__content__structure__body">
-              <textarea name="text"></textarea>
+              <textarea
+                name="text"
+                required
+                placeholder="Type your note content"
+              ></textarea>
             </div>
             <input type="submit" value="Submit" />
           </div>

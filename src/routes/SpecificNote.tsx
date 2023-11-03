@@ -34,7 +34,6 @@ export default function SpecificNote() {
         try {
           const result = await fetch(URL, data);
           const res = await result.json();
-          console.log(res.result);
           setNoteContent(res.result);
         } catch (e) {
           console.error(e);

@@ -98,7 +98,7 @@ main {
   justify-content: center;
   align-items: center;
 }
-.create-note__content__structure__body textarea {
+.create-note__content__structure__body pre {
   box-sizing: border-box;
   width: inherit;
   height: fit-content;
@@ -109,7 +109,22 @@ main {
   padding: none;
 }
 @media only screen and (max-width: 720px) {
-  .create-note__content__structure__body textarea {
+  .create-note__content__structure__body pre {
+    max-height: 50dvh;
+  }
+}
+.create-note__content__structure__body pre textarea {
+  box-sizing: border-box;
+  width: inherit;
+  height: fit-content;
+  max-width: 70dvw;
+  min-height: 200px;
+  max-height: 500px;
+  margin: none;
+  padding: none;
+}
+@media only screen and (max-width: 720px) {
+  .create-note__content__structure__body pre textarea {
     max-height: 50dvh;
   }
 }

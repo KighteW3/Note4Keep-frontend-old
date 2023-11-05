@@ -19,9 +19,14 @@ export default function CreateNote() {
   useEffect(() => {
     const x = [];
 
-    for (let i = 0; i < 5; i++) {
-      const a = i + 1;
-      x.push(<option value={a}>{a}</option>);
+    for (let i = 1; i < 5; i++) {
+      i === 2
+        ? x.push(
+            <option selected value={i}>
+              {i} {"(Default)"}
+            </option>
+          )
+        : x.push(<option value={i}>{i}</option>);
     }
 
     setOptionsList(x);
@@ -92,23 +97,21 @@ export default function CreateNote() {
               />
               <select
                 className="create-note__content__structure__headers__items"
-                placeholder="5"
                 name="priority"
               >
-                <option hidden value={2}>
-                  Priority (default: 2)
-                </option>
                 {optionsList.map((result) => {
                   return result;
                 })}
               </select>
             </div>
             <div className="create-note__content__structure__body">
-              <textarea
-                name="text"
-                required
-                placeholder="Type your note content"
-              ></textarea>
+              <pre>
+                <textarea
+                  name="text"
+                  required
+                  placeholder="Type your note content"
+                ></textarea>
+              </pre>
             </div>
             <input type="submit" value="Submit" />
           </div>

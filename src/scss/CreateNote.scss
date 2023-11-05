@@ -70,7 +70,7 @@
         justify-content: center;
         align-items: center;
 
-        textarea {
+        pre {
           box-sizing: border-box;
           width: inherit;
           height: fit-content;
@@ -82,6 +82,21 @@
 
           @media only screen and (max-width: 720px) {
             max-height: 50dvh;
+          }
+
+          textarea {
+            box-sizing: border-box;
+            width: inherit;
+            height: fit-content;
+            max-width: 70dvw;
+            min-height: 200px;
+            max-height: 500px;
+            margin: none;
+            padding: none;
+
+            @media only screen and (max-width: 720px) {
+              max-height: 50dvh;
+            }
           }
         }
       }

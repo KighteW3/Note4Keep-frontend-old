@@ -11,6 +11,7 @@ const URL = `${URLbackend}/api/notes/spec-note`;
 export default function SpecificNote() {
   const { noteId } = useParams();
   const [noteContent, setNoteContent] = useState<Note>();
+  const [optionsList, setOptionsList] = useState([<></>]);
 
   useEffect(() => {
     const authRaw = window.localStorage.getItem("SESSION_ID");
@@ -44,8 +45,62 @@ export default function SpecificNote() {
     }
   }, [noteId]);
 
+  useEffect(() => {
+    const x = [];
+
+    for (let i = 1; i < 5; i++) {
+      if (i && i === 2) {
+        x.push(
+          <option value={i}>
+            {i} {"(Default)"}
+          </option>
+        );
+      } else if (i && i === noteContent?.priority) {
+        x.push(
+          <option value={i} selected>
+            {i}
+          </option>
+        );
+      } else {
+        x.push(<option value={i}>{i}</option>);
+      }
+    }
+
+    setOptionsList(x);
+  }, []);
+
   function NoteContent() {
-    return <h1>{noteContent?.note_id}</h1>;
+    if (noteContent) {
+      return (
+        <>
+          <em>
+            <b>ID:</b> {noteContent.note_id}
+          </em>
+          <form>
+            <div>
+              <input
+                type="text"
+                placeholder="Insert the note title"
+                defaultValue={noteContent.title}
+                name="title"
+              />
+              <select name="priority">
+                {optionsList.map((result) => {
+                  return result;
+                })}
+              </select>
+            </div>
+            <pre>
+              <textarea
+                name="text"
+                required
+                defaultValue={noteContent.text}
+              ></textarea>
+            </pre>
+          </form>
+        </>
+      );
+    }
   }
 
   return (

@@ -34,8 +34,12 @@ export default function SpecificNote() {
 
         try {
           const result = await fetch(URL, data);
-          const res = await result.json();
-          setNoteContent(res.result);
+          if (result.ok) {
+            const res = await result.json();
+            setNoteContent(res.result);
+          } else {
+            throw "Problem getting note content";
+          }
         } catch (e) {
           console.error(e);
         }
@@ -47,6 +51,10 @@ export default function SpecificNote() {
 
   useEffect(() => {
     const x = [];
+
+    noteContent
+      ? console.log("Existe noteContent")
+      : console.error("No existe noteContent");
 
     for (let i = 1; i < 5; i++) {
       if (i && i === 2) {
@@ -67,7 +75,7 @@ export default function SpecificNote() {
     }
 
     setOptionsList(x);
-  }, []);
+  }, [noteContent]);
 
   function NoteContent() {
     if (noteContent) {
